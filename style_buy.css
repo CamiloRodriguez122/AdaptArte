@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: url('fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- NAVBAR FIJA --- */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  padding: 15px 40px;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  width: 90%;
+  max-width: 1100px;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #222;
+  padding: 6px 18px;
+  border-radius: 50px;
+  border: 1px solid rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: #f2f2f2;
+  border-color: #aaa;
+}
+
+
+
+/* 🪟 CONTENEDOR PRINCIPAL */
+.content-box {
+  width: 90%;
+  margin: 140px auto 50px; /* margen alto para no tapar con el navbar */
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  border-radius: 40px;
+  padding: 60px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 🪑 SECCIÓN DE COMPRA */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 100px;
+  flex-wrap: wrap;
+}
+
+/* IMAGEN DEL PRODUCTO */
+.image-section img {
+  width: 260px;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.image-section img.animate {
+  animation: resize 0.4s ease;
+}
+
+@keyframes resize {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* PANEL DE PERSONALIZACIÓN */
+.config-section {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(15px);
+  padding: 40px 50px;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  width: 340px;
+}
+
+.config-section h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.config-section p {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid #bbb;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+input[type="number"]:focus {
+  border-color: #7A5C3D;
+  outline: none;
+}
+
+/* COLORES */
+.color-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.color {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s;
+  border: 2px solid transparent;
+}
+
+.color.green { background-color: #7BA661; }
+.color.brown { background-color: #7A5C3D; }
+.color.beige { background-color: #D9C6A5; }
+
+.color.selected {
+  border: 2px solid black;
+  transform: scale(1.15);
+}
+
+/* BOTONES */
+.btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn.add {
+  background: #222;
+  color: #fff;
+}
+
+.btn.add:hover {
+  background: #000;
+}
+
+.btn.buy {
+  background: #e8e8e8;
+}
+
+.btn.buy:hover {
+  background: #ccc;
+}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdaptArte | Contact</title>
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- ESTILOS GENERALES --- */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:url('fondo.jpg') no-repeat center center/cover;
+      margin: 0;
+      padding-top: 120px; /* espacio para navbar fija */
+      color: #222;
+    }
+
+    /* --- NAVBAR FIJA (MISMO ESTILO QUE INDEX) --- */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  padding: 15px 40px;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  width: 90%;
+  max-width: 1100px;
+  z-index: 1000;
+}
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #222;
+      padding: 6px 18px;
+      border-radius: 50px;
+      border: 1px solid rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: #f2f2f2;
+      border-color: #aaa;
+    }
+
+    /* --- SECCIÓN CONTACT --- */
+    .contact-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px;
+      width: 90%;
+      max-width: 1100px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .contact-info h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .contact-info h3 {
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-info span {
+      font-size: 1.2rem;
+    }
+
+    .contact-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .contact-image img {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 25px;
+      object-fit: cover;
+    }
+
+    /* --- PIE DE PÁGINA --- */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      border-radius: 50px;
+      padding: 10px 30px;
+      margin: 40px auto;
+      width: 90%;
+      max-width: 1100px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .footer p {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .footer span {
+      font-weight: 600;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .contact-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .contact-image {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🔝 NAVBAR -->
+  <header class="navbar">
+    <div class="logo">ADAPTARTE</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="buy.html">Buy</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="closing.html">Closing</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 📞 SECCIÓN DE CONTACTO -->
+  <section class="contact-section">
+    <div class="contact-card">
+      <div class="contact-info">
+        <h1>LET’S CONNECT</h1>
+        <h3>Let’s Contact Us!</h3>
+        <p><span>📞</span> 3225297005</p>
+        <p><span>✉️</span> adaptartearq@gmail.com</p>
+        <p><span>🌐</span> www.adaptartegkjsscom</p>
+      </div>
+
+      <div class="contact-image">
+        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg" alt="Team Hands">
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔻 PIE DE PÁGINA -->
+  <footer class="footer">
+    <p>SOLUCIONES DIGITALES Y ESCALABLES</p>
+    <span>09</span>
+  </footer>
+
+</body>
+</html>

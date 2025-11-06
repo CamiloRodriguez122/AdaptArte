@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: url('fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- NAVBAR FIJA --- */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  padding: 15px 40px;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  width: 90%;
+  max-width: 1100px;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #222;
+  padding: 6px 18px;
+  border-radius: 50px;
+  border: 1px solid rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: #f2f2f2;
+  border-color: #aaa;
+}
+
+/* 💳 CONTENIDO PRINCIPAL */
+.checkout-box {
+  width: 90%;
+  max-width: 1000px;
+  margin: 140px auto 50px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  border-radius: 40px;
+  padding: 50px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.checkout-box h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.checkout-box .desc {
+  color: #444;
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.checkout-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* 🪑 PRODUCTO */
+.product-summary {
+  flex: 1;
+  min-width: 280px;
+}
+
+.product-summary h2 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.product-summary img {
+  width: 200px;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+  margin-bottom: 15px;
+}
+
+/* 💰 FORMULARIO DE PAGO */
+.payment-form {
+  flex: 1;
+  min-width: 320px;
+  text-align: left;
+}
+
+.payment-form h2 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #bbb;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.input-group input:focus {
+  border-color: #222;
+  outline: none;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.btn.pay {
+  width: 100%;
+  background: #222;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn.pay:hover {
+  background: black;
+}

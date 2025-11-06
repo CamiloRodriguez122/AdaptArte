@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdaptArte | Checkout</title>
+  <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+
+  <!-- 🧭 NAVBAR -->
+  <header class="navbar">
+    <div class="logo">ADAPTARTE</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="buy.html" class="active">Buy</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="closing.html">Closing</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 💳 CONTENIDO PRINCIPAL -->
+  <div class="checkout-box">
+    <h1>Finaliza tu compra</h1>
+    <p class="desc">Verifica los datos y completa tu pago para finalizar la personalización de tu mueble AdaptArte.</p>
+
+    <div class="checkout-container">
+      <!-- 🪑 Resumen del producto -->
+      <div class="product-summary" id="productSummary">
+        <h2>Tu producto</h2>
+        <div id="mediaContainer">
+          <img id="productImage" alt="Producto seleccionado">
+        </div>
+        <div class="details">
+          <p><strong>Producto:</strong> <span id="productName">Silla AdaptArte</span></p>
+          <p id="colorRow"><strong>Color:</strong> <span id="productColor">-</span></p>
+          <p><strong>Dimensiones:</strong> <span id="productDimensions">-</span></p>
+          <p><strong>Cantidad:</strong> <span id="productQuantity">-</span></p>
+          <p><strong>Total:</strong> <span id="productTotal">$0</span></p>
+        </div>
+      </div>
+
+      <!-- 💰 Datos de pago -->
+      <div class="payment-form">
+        <h2>Método de pago</h2>
+        <form id="paymentForm">
+          <div class="input-group">
+            <label for="name">Nombre completo</label>
+            <input type="text" id="name" placeholder="Ej: Juan Pérez" required>
+          </div>
+
+          <div class="input-group">
+            <label for="card">Número de tarjeta</label>
+            <input type="text" id="card" maxlength="16" placeholder="1234 5678 9012 3456" required>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <label for="exp">Expiración</label>
+              <input type="text" id="exp" placeholder="MM/AA" maxlength="5" required>
+            </div>
+
+            <div class="input-group">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" maxlength="3" placeholder="***" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" placeholder="correo@ejemplo.com" required>
+          </div>
+
+          <button type="submit" class="btn pay">Pagar ahora</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="checkout.js"></script>
+</body>
+</html>
