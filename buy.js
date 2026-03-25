@@ -39,7 +39,7 @@ if (colors.length > 0) {
       colors.forEach(cc => cc.classList.remove('selected'));
       c.classList.add('selected');
       selectedColor = c.dataset.color;
-      img.src = `silla_${selectedColor}.jpg`;
+      img.src = `./Productos/Silla_${selectedColor}.jpg`;
     });
   });
 }
@@ -74,5 +74,5 @@ document.getElementById('addToCartBtn').addEventListener('click', () => {
 
   // Guardar en localStorage para checkout
   localStorage.setItem('adaptarteProduct', JSON.stringify(product));
-  window.location.href = 'checkout.html';
+  window.location.href = 'cart.html';
 });

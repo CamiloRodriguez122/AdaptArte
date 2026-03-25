@@ -3,12 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdaptArte | Checkout</title>
+  <title>AdaptArte | Datos de Envío</title>
   <link rel="stylesheet" href="checkout.css">
+  <style>
+    /* Inputs con texto negro */
+    .input-group input,
+    .input-group select {
+      color: #1a1a1a !important;
+      background: rgba(255, 255, 255, 0.90) !important;
+    }
+    .input-group input::placeholder { color: #666; }
+    .input-group select option { color: #1a1a1a; background: #fff; }
+  </style>
 </head>
 <body>
 
-  <!-- 🧭 NAVBAR -->
+  <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">ADAPTARTE</div>
     <nav>
@@ -24,13 +34,13 @@
     </nav>
   </header>
 
-  <!-- 💳 CONTENIDO PRINCIPAL -->
   <div class="checkout-box">
-    <h1>Finaliza tu compra</h1>
-    <p class="desc">Verifica los datos y completa tu pago para finalizar la personalización de tu mueble AdaptArte.</p>
+    <h1>Datos de Envío</h1>
+    <p class="desc">Completa tu información de entrega para finalizar el pedido de tu mueble AdaptArte.</p>
 
     <div class="checkout-container">
-      <!-- 🪑 Resumen del producto -->
+
+      <!-- Resumen del producto -->
       <div class="product-summary" id="productSummary">
         <h2>Tu producto</h2>
         <div id="mediaContainer">
@@ -39,36 +49,19 @@
         <div class="details">
           <p><strong>Producto:</strong> <span id="productName">Silla AdaptArte</span></p>
           <p id="colorRow"><strong>Color:</strong> <span id="productColor">-</span></p>
-          <p><strong>Dimensiones:</strong> <span id="productDimensions">-</span></p>
           <p><strong>Cantidad:</strong> <span id="productQuantity">-</span></p>
           <p><strong>Total:</strong> <span id="productTotal">$0</span></p>
         </div>
       </div>
 
-      <!-- 💰 Datos de pago -->
+      <!-- Formulario de envío -->
       <div class="payment-form">
-        <h2>Método de pago</h2>
-        <form id="paymentForm">
-          <div class="input-group">
-            <label for="name">Nombre completo</label>
-            <input type="text" id="name" placeholder="Ej: Juan Pérez" required>
-          </div>
+        <h2>Información de entrega</h2>
+        <form id="shippingForm">
 
           <div class="input-group">
-            <label for="card">Número de tarjeta</label>
-            <input type="text" id="card" maxlength="16" placeholder="1234 5678 9012 3456" required>
-          </div>
-
-          <div class="form-row">
-            <div class="input-group">
-              <label for="exp">Expiración</label>
-              <input type="text" id="exp" placeholder="MM/AA" maxlength="5" required>
-            </div>
-
-            <div class="input-group">
-              <label for="cvv">CVV</label>
-              <input type="text" id="cvv" maxlength="3" placeholder="***" required>
-            </div>
+            <label for="fullName">Nombre completo</label>
+            <input type="text" id="fullName" placeholder="Ej: Juan Pérez" required>
           </div>
 
           <div class="input-group">
@@ -76,12 +69,187 @@
             <input type="email" id="email" placeholder="correo@ejemplo.com" required>
           </div>
 
-          <button type="submit" class="btn pay">Pagar ahora</button>
+          <!-- País -->
+          <div class="input-group">
+            <label for="country">País</label>
+            <select id="country" required>
+              <option value="">Seleccionar país...</option>
+              <option value="Colombia">Colombia</option>
+              <option value="México">México</option>
+              <option value="Venezuela">Venezuela</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Perú">Perú</option>
+              <option value="Chile">Chile</option>
+              <option value="Argentina">Argentina</option>
+            </select>
+          </div>
+
+          <!-- Departamento (se llena dinámicamente) -->
+          <div class="input-group" id="deptGroup" style="display:none;">
+            <label for="department">Departamento / Estado</label>
+            <select id="department" required>
+              <option value="">Seleccionar departamento...</option>
+            </select>
+          </div>
+
+          <!-- Ciudad (se llena dinámicamente) -->
+          <div class="input-group" id="cityGroup" style="display:none;">
+            <label for="city">Ciudad</label>
+            <select id="city" required>
+              <option value="">Seleccionar ciudad...</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="address">Dirección</label>
+            <input type="text" id="address" placeholder="Ej: Calle 10 #45-22, Apto 301" required>
+          </div>
+
+          <div class="input-group">
+            <label for="zipCode">Código postal</label>
+            <input type="text" id="zipCode" placeholder="Ej: 050010" maxlength="10">
+          </div>
+
+          <div class="input-group">
+            <label for="phone">Teléfono de contacto</label>
+            <input type="text" id="phone" placeholder="Ej: 3001234567" required>
+          </div>
+
+          <button type="submit" class="btn-confirm">Confirmar pedido</button>
         </form>
       </div>
+
     </div>
   </div>
 
   <script src="checkout.js"></script>
+  <script>
+    // === Datos de departamentos y ciudades por país ===
+    const geoData = {
+      "Colombia": {
+        "Amazonas":               ["Leticia","Puerto Nariño","La Chorrera"],
+        "Antioquia":              ["Medellín","Bello","Itagüí","Envigado","Rionegro","Apartadó","Turbo","Caucasia","Marinilla","Sabaneta"],
+        "Arauca":                 ["Arauca","Arauquita","Fortul","Puerto Rondón","Saravena","Tame"],
+        "Atlántico":              ["Barranquilla","Soledad","Malambo","Sabanalarga","Baranoa","Galapa","Manatí","Palmar de Varela"],
+        "Bogotá D.C.":            ["Bogotá"],
+        "Bolívar":                ["Cartagena","Magangué","Turbaco","El Carmen de Bolívar","Mompox","San Juan Nepomuceno","Arjona"],
+        "Boyacá":                 ["Tunja","Duitama","Sogamoso","Chiquinquirá","Paipa","Moniquirá","Villa de Leyva","Yopal"],
+        "Caldas":                 ["Manizales","La Dorada","Chinchiná","Riosucio","Anserma","Manzanares","Villamaría"],
+        "Caquetá":                ["Florencia","San Vicente del Caguán","Puerto Rico","Belén de los Andaquíes","Cartagena del Chairá"],
+        "Casanare":               ["Yopal","Aguazul","Villanueva","Tauramena","Orocué","San Luis de Palenque"],
+        "Cauca":                  ["Popayán","Santander de Quilichao","Puerto Tejada","Patía","Bolívar","El Tambo","Miranda"],
+        "Cesar":                  ["Valledupar","Aguachica","Bosconia","Codazzi","La Paz","El Copey","Chimichagua"],
+        "Chocó":                  ["Quibdó","Istmina","Riosucio","Unguía","Nuquí","Bahía Solano","Tadó"],
+        "Córdoba":                ["Montería","Lorica","Cereté","Sahagún","Montelíbano","Planeta Rica","Tierralta","Ciénaga de Oro"],
+        "Cundinamarca":           ["Soacha","Facatativá","Zipaquirá","Chía","Fusagasugá","Mosquera","Madrid","Funza","Cajicá"],
+        "Guainía":                ["Inírida","Barranco Minas","Mapiripana"],
+        "Guaviare":               ["San José del Guaviare","El Retorno","Calamar","Miraflores"],
+        "Huila":                  ["Neiva","Pitalito","Garzón","La Plata","Campoalegre","Rivera","Palermo"],
+        "La Guajira":             ["Riohacha","Maicao","Uribia","Manaure","Fonseca","Barrancas","Albania"],
+        "Magdalena":              ["Santa Marta","Ciénaga","Fundación","El Banco","Aracataca","Plato","Pivijay"],
+        "Meta":                   ["Villavicencio","Acacías","Granada","Puerto López","San Martín","Cumaral","Puerto Gaitán"],
+        "Nariño":                 ["Pasto","Tumaco","Ipiales","Túquerres","La Unión","Samaniego","El Charco"],
+        "Norte de Santander":     ["Cúcuta","Ocaña","Pamplona","Villa del Rosario","Los Patios","Tibú","El Zulia"],
+        "Putumayo":               ["Mocoa","Puerto Asís","Orito","Valle del Guamuez","Puerto Caicedo","Sibundoy"],
+        "Quindío":                ["Armenia","Calarcá","Montenegro","Quimbaya","Circasia","La Tebaida","Filandia"],
+        "Risaralda":              ["Pereira","Dosquebradas","Santa Rosa de Cabal","La Virginia","Quinchía","Marsella"],
+        "San Andrés y Providencia":["San Andrés","Providencia"],
+        "Santander":              ["Bucaramanga","Floridablanca","Girón","Piedecuesta","Barrancabermeja","San Gil","Vélez","Socorro"],
+        "Sucre":                  ["Sincelejo","Corozal","Sampués","San Marcos","Tolú","Lorica","Morroa"],
+        "Tolima":                 ["Ibagué","Espinal","Melgar","Honda","Chaparral","Líbano","Girardot","Armero"],
+        "Valle del Cauca":        ["Cali","Buenaventura","Palmira","Tuluá","Cartago","Buga","Jamundí","Yumbo","Candelaria"],
+        "Vaupés":                 ["Mitú","Carurú","Taraira"],
+        "Vichada":                ["Puerto Carreño","La Primavera","Cumaribo","Santa Rosalía"],
+      },
+      "México": {
+        "Ciudad de México":  ["Cuauhtémoc","Iztapalapa","Gustavo A. Madero","Coyoacán","Xochimilco"],
+        "Jalisco":           ["Guadalajara","Zapopan","Tlaquepaque","Tonalá","Puerto Vallarta"],
+        "Nuevo León":        ["Monterrey","San Nicolás","Apodaca","Guadalupe","San Pedro Garza García"],
+        "Estado de México":  ["Ecatepec","Nezahualcóyotl","Toluca","Naucalpan","Tlalnepantla"],
+        "Puebla":            ["Puebla","Tehuacán","San Martín Texmelucan","Atlixco"],
+        "Veracruz":          ["Veracruz","Xalapa","Córdoba","Coatzacoalcos","Poza Rica"],
+        "Yucatán":           ["Mérida","Valladolid","Progreso","Tizimín"],
+        "Guanajuato":        ["León","Irapuato","Guanajuato","Salamanca","Celaya"],
+      },
+      "Venezuela": {
+        "Distrito Capital":  ["Caracas","Antimano","El Valle"],
+        "Miranda":           ["Petare","Guarenas","Guatire","Baruta","Chacao"],
+        "Zulia":             ["Maracaibo","Cabimas","Ciudad Ojeda","San Francisco"],
+        "Carabobo":          ["Valencia","Puerto Cabello","Guacara","Naguanabo"],
+        "Aragua":            ["Maracay","Turmero","La Victoria","Cagua"],
+        "Lara":              ["Barquisimeto","Cabudare","El Tocuyo","Quíbor"],
+      },
+      "Ecuador": {
+        "Pichincha":         ["Quito","Cayambe","Mejía","Rumiñahui","Pedro Moncayo"],
+        "Guayas":            ["Guayaquil","Samborondón","Milagro","Durán","Daule"],
+        "Azuay":             ["Cuenca","Gualaceo","Santa Isabel","Paute"],
+        "Manabí":            ["Portoviejo","Manta","Chone","Jipijapa","Bahía de Caráquez"],
+        "El Oro":            ["Machala","Santa Rosa","Pasaje","Huaquillas"],
+      },
+      "Perú": {
+        "Lima":              ["Lima","Callao","San Juan de Lurigancho","San Martín de Porres","Ate"],
+        "Arequipa":          ["Arequipa","Cayma","Cerro Colorado","Paucarpata","Socabaya"],
+        "La Libertad":       ["Trujillo","Víctor Larco","El Porvenir","Florencia de Mora"],
+        "Piura":             ["Piura","Castilla","Catacaos","Talara","Paita"],
+        "Cusco":             ["Cusco","San Sebastián","Wanchaq","Santiago","Sicuani"],
+      },
+      "Chile": {
+        "Región Metropolitana": ["Santiago","Puente Alto","Maipú","La Florida","Las Condes"],
+        "Valparaíso":        ["Valparaíso","Viña del Mar","Quilpué","Villa Alemana","San Antonio"],
+        "Biobío":            ["Concepción","Talcahuano","Los Ángeles","Coronel","Chiguayante"],
+        "La Araucanía":      ["Temuco","Padre Las Casas","Victoria","Angol","Nueva Imperial"],
+      },
+      "Argentina": {
+        "Buenos Aires":      ["La Plata","Mar del Plata","Quilmes","Lanús","General Pueyrredón"],
+        "CABA":              ["Palermo","Belgrano","Recoleta","Caballito","San Telmo"],
+        "Córdoba":           ["Córdoba","Villa María","Río Cuarto","San Francisco","Villa Carlos Paz"],
+        "Santa Fe":          ["Rosario","Santa Fe","Rafaela","Venado Tuerto","Villa Gobernador Gálvez"],
+        "Mendoza":           ["Mendoza","Godoy Cruz","San Rafael","Luján de Cuyo","Maipú"],
+      }
+    };
+
+    const countrySelect = document.getElementById('country');
+    const deptGroup     = document.getElementById('deptGroup');
+    const deptSelect    = document.getElementById('department');
+    const cityGroup     = document.getElementById('cityGroup');
+    const citySelect    = document.getElementById('city');
+
+    countrySelect.addEventListener('change', () => {
+      const country = countrySelect.value;
+      deptSelect.innerHTML = '<option value="">Seleccionar departamento...</option>';
+      citySelect.innerHTML = '<option value="">Seleccionar ciudad...</option>';
+      cityGroup.style.display = 'none';
+
+      if (country && geoData[country]) {
+        Object.keys(geoData[country]).forEach(dept => {
+          const opt = document.createElement('option');
+          opt.value = dept;
+          opt.textContent = dept;
+          deptSelect.appendChild(opt);
+        });
+        deptGroup.style.display = 'block';
+      } else {
+        deptGroup.style.display = 'none';
+      }
+    });
+
+    deptSelect.addEventListener('change', () => {
+      const country = countrySelect.value;
+      const dept    = deptSelect.value;
+      citySelect.innerHTML = '<option value="">Seleccionar ciudad...</option>';
+
+      if (dept && geoData[country] && geoData[country][dept]) {
+        geoData[country][dept].forEach(city => {
+          const opt = document.createElement('option');
+          opt.value = city;
+          opt.textContent = city;
+          citySelect.appendChild(opt);
+        });
+        cityGroup.style.display = 'block';
+      } else {
+        cityGroup.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>

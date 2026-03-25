@@ -5,10 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AdaptArte | Catálogo de Mobiliario Adaptable</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ------ Sección descriptiva en index ------ */
+    .home-desc-section {
+      min-height: 100vh;
+      padding: 100px 6% 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 28px;
+    }
+
+    .home-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      max-width: 780px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .home-title-row h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }
+
+    .home-page-num {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.08em;
+    }
+
+    .home-desc-card {
+      background: rgba(160, 115, 75, 0.55);
+      backdrop-filter: blur(14px);
+      border-radius: 22px;
+      padding: 32px 48px;
+      max-width: 780px;
+      margin: 0 auto;
+      width: 100%;
+      box-shadow: 0 4px 25px rgba(60,30,10,0.18);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .home-desc-card .lead {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .home-desc-card .sub {
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: #f5e6d0;
+      text-align: center;
+      line-height: 1.65;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- 🔝 NAVBAR -->
+  <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">ADAPTARTE</div>
     <nav>
@@ -32,50 +95,19 @@
     </div>
   </section>
 
-  <!-- 💡 PROPUESTA / DESCRIPCIÓN -->
-  <section class="hero hero2">
-    <div class="hero-content">
-      <h1>AdapArte</h1>
-      <p class="subtext">
-        Nuestra propuesta busca transformar la manera en que usamos el espacio.<br>
-        Un mueble no tiene por qué ser fijo: puede moverse, adaptarse y acompañarte donde lo necesites.<br><br>
-        <strong>AdaptArte</strong> es una marca que propone el diseño de mobiliarios plegables y adaptables que responden a las necesidades actuales de espacio y movilidad.<br><br>
-        Inspirado en la arquitectura flexible, busca crear mesas, sillas y accesorios funcionales que puedan transportarse y usarse en distintos contextos, como el hogar, la universidad o la obra.<br><br>
-        La idea combina diseño, practicidad e innovación, ofreciendo una solución moderna para un estilo de vida dinámico.
-      </p>
+  <!-- ✨ DESCRIPCIÓN (antes About Us) -->
+  <section class="home-desc-section">
+    <div class="home-title-row">
+      <h1>AdaptArte</h1>
+      <span class="home-page-num">01</span>
+    </div>
+    <div class="home-desc-card">
+      <p class="lead">AdaptArte transforma tu forma de habitar el espacio.</p>
+      <p class="sub">Diseñamos mobiliario inteligente que se<br>adapta a tu ritmo de vida...</p>
     </div>
   </section>
 
-  <!-- 🧑‍💼 ABOUT SECTION -->
-  <section class="about">
-    <div class="about-container">
-      <div class="about-text">
-        <h2>WHO WE ARE?</h2>
-        <p>
-          Somos un equipo de arquitectos innovadores que desarrollamos un catálogo inteligente
-          de mobiliario plegable y multifuncional, diseñado para optimizar espacios y adaptarse a
-          distintas formas de habitar.
-        </p>
-      </div>
-
-      <div class="about-team">
-        <div class="member">
-          <img src="giovannis.jpg" alt="Giovannis">
-          <span>Giovannis</span>
-        </div>
-        <div class="member">
-          <img src="sandri.jpg" alt="Sandri">
-          <span>Sandri</span>
-        </div>
-        <div class="member">
-          <img src="Juan.jpg" alt="Juan">
-          <span>Juan</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 🔻 FOOTER -->
+  <!-- FOOTER -->
   <footer class="footer">
     <p>SOLUCIONES DIGITALES Y ESCALABLES <span>01</span></p>
   </footer>

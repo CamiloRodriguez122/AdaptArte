@@ -1,49 +1,74 @@
-// 🪑 Recuperar producto guardado
-const productData = JSON.parse(localStorage.getItem('adaptarteProduct'));
-const mediaContainer = document.getElementById('mediaContainer');
-const img = document.getElementById('productImage');
+// 🚚 Checkout — datos de envío
+const cartData   = JSON.parse(localStorage.getItem('cartData'));
+const legacyData = JSON.parse(localStorage.getItem('adaptarteProduct'));
+
+// Usar cualquiera de los dos storages (compatibilidad)
+const product = cartData || legacyData;
+
+const img      = document.getElementById('productImage');
 const colorRow = document.getElementById('colorRow');
 
-if (productData) {
-  document.getElementById('productName').textContent = productData.name;
-  document.getElementById('productDimensions').textContent = `${productData.height} cm alto × ${productData.width} cm ancho`;
-  document.getElementById('productQuantity').textContent = `${productData.quantity} ${productData.quantity == 1 ? 'unidad' : 'unidades'}`;
+if (product) {
+  document.getElementById('productName').textContent = product.name || 'Silla AdaptArte';
 
-  const total = productData.price * productData.quantity;
-  document.getElementById('productTotal').textContent = `$${total.toLocaleString('es-CO')} COP`;
+  const qty   = product.qty   || product.quantity || 1;
+  const total = product.total || (product.price * qty);
 
-  // Mostrar imagen o video según el tipo
-  if (productData.type === "image") {
-    img.src = `silla_${productData.color}.jpg`;
-    document.getElementById('productColor').textContent = productData.color.charAt(0).toUpperCase() + productData.color.slice(1);
-  } else if (productData.type === "video") {
-    // Crear video dinámicamente
-    img.remove();
-    colorRow.style.display = "none";
+  document.getElementById('productQuantity').textContent =
+    qty + (qty == 1 ? ' unidad' : ' unidades');
+  document.getElementById('productTotal').textContent =
+    '$' + parseFloat(total).toFixed(2).replace('.', ',');
 
+  // Imagen o video
+  if (product.type === 'image') {
+    img.src = product.source || `./Productos/Silla_${product.color || 'beige'}.jpg`;
+    document.getElementById('productColor').textContent =
+      (product.color || 'beige').charAt(0).toUpperCase() +
+      (product.color || 'beige').slice(1);
+  } else if (product.type === 'video') {
+    img.style.display = 'none';
+    if (colorRow) colorRow.style.display = 'none';
     const video = document.createElement('video');
-    video.src = productData.source;
+    video.src      = product.source;
     video.autoplay = true;
-    video.loop = true;
-    video.muted = true;
-    video.style.width = "100%";
-    video.style.borderRadius = "15px";
-    video.controls = false;
-    mediaContainer.appendChild(video);
+    video.loop     = true;
+    video.muted    = true;
+    video.style.cssText = 'width:180px; border-radius:15px; margin-bottom:15px;';
+    document.getElementById('mediaContainer').appendChild(video);
   }
 }
 
-// 💰 Procesar pago
-document.getElementById('paymentForm').addEventListener('submit', (e) => {
+// 📦 Enviar formulario de envío → ir a confirm.html
+document.getElementById('shippingForm').addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const btn = document.querySelector('.btn.pay');
-  btn.disabled = true;
-  btn.textContent = 'Procesando...';
+  const shippingData = {
+    fullName:   document.getElementById('fullName').value,
+    email:      document.getElementById('email').value,
+    country:    document.getElementById('country').value,
+    department: document.getElementById('department').value,
+    city:       document.getElementById('city').value,
+    address:    document.getElementById('address').value,
+    zipCode:    document.getElementById('zipCode').value,
+    phone:      document.getElementById('phone').value
+  };
 
-  setTimeout(() => {
-    alert('✅ Pago procesado con éxito. ¡Gracias por confiar en AdaptArte!');
-    localStorage.removeItem('adaptarteProduct');
-    window.location.href = 'index.html';
-  }, 2500);
+  localStorage.setItem('shippingData', JSON.stringify(shippingData));
+
+  // Si venía por el flujo legacy (buy.js directo), migrar datos
+  if (!cartData && legacyData) {
+    const qty   = parseInt(legacyData.quantity) || 1;
+    const total = legacyData.price * qty;
+    localStorage.setItem('cartData', JSON.stringify({
+      name:  legacyData.name,
+      type:  legacyData.type,
+      source: legacyData.source,
+      color: legacyData.color,
+      price: legacyData.price,
+      qty,
+      total
+    }));
+  }
+
+  window.location.href = 'confirm.html';
 });
