@@ -183,30 +183,58 @@
     <p>SOLUCIONES DIGITALES Y ESCALABLES <span>04</span></p>
   </footer>
 
-  <script>
-  const track    = document.getElementById('carouselTrack');
-  const prevBtn  = document.getElementById('prevBtn');
-  const nextBtn  = document.getElementById('nextBtn');
-  const cards    = track.querySelectorAll('.product-card');
-  let currentIndex = 0;
+<script>
+  const track = document.getElementById('carouselTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  let isTransitioning = false;
 
-  function getCardWidth() {
-    return cards[0].offsetWidth + 25; // ancho + gap
+  function getScrollStep() {
+    const card = track.querySelector('.product-card');
+    // gap is 14px (mobile) or 25px (desktop). We'll approximate or fetch.
+    const gap = window.innerWidth <= 768 ? 14 : 25;
+    return card ? card.offsetWidth + gap : 320;
   }
 
-  function goTo(index) {
-    // Wrap around
-    if (index < 0) index = cards.length - 1;
-    if (index >= cards.length) index = 0;
-    currentIndex = index;
-    track.scrollTo({
-      left: currentIndex * getCardWidth(),
-      behavior: 'smooth'
-    });
-  }
+  // Desactivar scroll nativo para usar la animación CSS puramente
+  track.style.overflow = 'visible';
 
-  nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
-  prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+  nextBtn.addEventListener('click', () => {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    const step = getScrollStep();
+    track.style.transition = 'transform 0.4s ease-in-out';
+    track.style.transform = `translateX(-${step}px)`;
+    
+    setTimeout(() => {
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(0)';
+      track.appendChild(track.firstElementChild);
+      isTransitioning = false;
+    }, 400);
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    const step = getScrollStep();
+    // Move last element to front instantly
+    track.prepend(track.lastElementChild);
+    // Offset backwards instantly
+    track.style.transition = 'none';
+    track.style.transform = `translateX(-${step}px)`;
+    
+    // Force layout recalculation
+    void track.offsetWidth;
+    
+    // Animate to 0
+    track.style.transition = 'transform 0.4s ease-in-out';
+    track.style.transform = 'translateX(0)';
+    
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 400);
+  });
 </script>
 
 
@@ -216,5 +244,6 @@
       window.location.href = "buy.html";
     }
   </script>
+  <script src="script.js"></script>
 </body>
 </html>

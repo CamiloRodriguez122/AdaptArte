@@ -126,6 +126,33 @@
       margin-bottom: 20px;
     }
     .breadcrumb-confirm a { color: #5a3e2b; text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      body { background-attachment: scroll; }
+
+      .confirm-page { padding: 110px 16px 80px; align-items: flex-start; }
+
+      .confirm-wrapper {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 24px;
+      }
+
+      .confirm-box-img { display: none; }
+
+      .confirm-panel { padding: 32px 22px; min-width: unset; width: 100%; }
+
+      .confirm-panel h1 { font-size: 1.8rem; }
+      .confirm-subtitle { font-size: 0.95rem; }
+    }
+
+    @media (max-width: 480px) {
+      .confirm-panel h1 { font-size: 1.4rem; }
+      .confirm-panel { padding: 24px 16px; }
+      .btn-back-home { font-size: 0.88rem; padding: 10px 22px; }
+    }
   </style>
 </head>
 <body>

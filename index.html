@@ -67,6 +67,24 @@
       text-align: center;
       line-height: 1.65;
     }
+
+    /* ── Responsive ── */
+    .home-desc-section { scroll-snap-align: start; }
+
+    @media (max-width: 768px) {
+      .home-desc-section { padding: 80px 5% 80px; min-height: auto; }
+      .home-title-row { max-width: 100%; }
+      .home-title-row h1 { font-size: 2.4rem; }
+      .home-desc-card { max-width: 100%; padding: 22px 20px; }
+      .home-desc-card .lead { font-size: 1.2rem; }
+      .home-desc-card .sub  { font-size: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .home-title-row h1 { font-size: 1.8rem; }
+      .home-desc-card .lead { font-size: 1rem; }
+      .home-desc-card .sub  { font-size: 0.9rem; }
+    }
   </style>
 </head>
 <body>

@@ -262,6 +262,31 @@
     }
     .cart-breadcrumb a { color: rgba(255,255,255,0.85); text-decoration: none; }
     .cart-breadcrumb a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      body { background-attachment: scroll; }
+
+      .cart-page { padding: 110px 16px 80px; align-items: flex-start; }
+
+      .cart-wrapper {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 24px;
+      }
+
+      .cart-box-img { display: none; } /* ocultar emoji en móvil */
+
+      .cart-panel { min-width: unset; width: 100%; padding: 22px 18px; }
+
+      .cart-header h2 { font-size: 1.1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .cart-page { padding: 100px 12px 60px; }
+      .btn-payment { font-size: 0.88rem; padding: 10px; }
+    }
   </style>
 </head>
 <body>

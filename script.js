@@ -1,39 +1,60 @@
 // Efecto de reducción de márgenes al hacer scroll
-window.addEventListener('scroll', () => {
-  const hero = document.querySelector('.hero');
-  if (window.scrollY > 80) {
-    hero.classList.add('scrolled');
-  } else {
-    hero.classList.remove('scrolled');
-  }
-});
+const heroEl = document.querySelector('.hero');
+if (heroEl) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) heroEl.classList.add('scrolled');
+    else heroEl.classList.remove('scrolled');
+  });
+}
 
 // Animaciones de aparición al hacer scroll
 const revealOnScroll = () => {
   const elements = document.querySelectorAll('.hero-content, .subtext, .about-container');
   elements.forEach(el => {
     const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 150) {
-      el.classList.add('visible');
-    }
+    if (rect.top < window.innerHeight - 100) el.classList.add('visible');
   });
 };
-
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
 
+// =============================================
+// 🍔 HAMBURGER MENU — funciona en todas las páginas
+// =============================================
+document.addEventListener('DOMContentLoaded', () => {
+  const navbar   = document.querySelector('.navbar');
+  const navLinks = document.querySelector('.nav-links');
+  if (!navbar || !navLinks) return;
 
-// --- CARRUSEL DE PRODUCTOS ---
-const track = document.querySelector('.carousel-track');
-const nextBtn = document.getElementById('nextBtn');
-const prevBtn = document.getElementById('prevBtn');
+  // Crear botón hamburguesa si no existe
+  let hamburger = navbar.querySelector('.hamburger');
+  if (!hamburger) {
+    hamburger = document.createElement('button');
+    hamburger.className = 'hamburger';
+    hamburger.setAttribute('aria-label', 'Menú');
+    hamburger.innerHTML = `<span></span><span></span><span></span>`;
+    navbar.appendChild(hamburger);
+  }
 
-if (track && nextBtn && prevBtn) {
-  nextBtn.addEventListener('click', () => {
-    track.scrollBy({ left: 300, behavior: 'smooth' });
+  // Toggle menú
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active');
   });
 
-  prevBtn.addEventListener('click', () => {
-    track.scrollBy({ left: -300, behavior: 'smooth' });
+  // Cerrar al hacer clic en un enlace
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+    });
   });
-}
+
+  // Cerrar al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    if (!navbar.contains(e.target)) {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+    }
+  });
+});

@@ -680,3 +680,270 @@ body {
 .closing-container a:hover {
   background: rgba(160, 120, 80, 0.7);
 }
+
+/* ============================================================
+   📱 RESPONSIVE — HAMBURGER + BREAKPOINTS
+   ============================================================ */
+
+/* --- Hamburger button (creado por script.js) --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: var(--text-primary);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Animación X al abrir */
+.hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* -------- TABLET: ≤ 1024px -------- */
+@media (max-width: 1024px) {
+  .navbar { padding: 12px 25px; }
+  .nav-links { gap: 6px; }
+  .nav-links a { padding: 5px 12px; font-size: 0.85rem; }
+
+  .hero-content { padding: 60px 40px; width: 88%; }
+  .hero-content h1 { font-size: 2.6rem; }
+
+  .services-container,
+  .mission-vision-container,
+  .products-container { padding: 50px 40px; width: 92%; }
+
+  .product-card { min-width: 220px; flex: 0 0 220px; }
+}
+
+/* -------- MOBILE: ≤ 768px -------- */
+@media (max-width: 768px) {
+  /* ── Navbar hamburger ── */
+  .hamburger { display: flex; }
+
+  .navbar {
+    top: 12px;
+    border-radius: 20px;
+    padding: 14px 22px;
+    width: 92%;
+    flex-wrap: wrap; /* Permite que el menú baje a la siguiente línea */
+    position: fixed;
+    align-items: center;
+  }
+
+  /* El nav wrapper necesita ocupar el 100% para empujar los links abajo */
+  .navbar nav { width: 100%; }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 16px 0 8px;
+  }
+
+  /* Animación suave al abrir en flex */
+  .nav-links.open {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .nav-links li { list-style: none; width: 100%; }
+
+  .nav-links a {
+    display: block;
+    padding: 14px 20px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #ffffff;
+    transition: 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: rgba(255,255,255,0.28);
+    border-color: rgba(255,255,255,0.5);
+    color: #ffffff;
+  }
+
+  /* ── Body background ── */
+  body { background-attachment: scroll; }
+
+  /* ── Footer ── */
+  .footer {
+    position: relative;
+    bottom: unset;
+    left: unset;
+    transform: none;
+    width: 92%;
+    margin: 20px auto;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  /* ── Hero ── */
+  .hero { padding-top: 120px; padding-bottom: 80px; }
+
+  .hero-content {
+    width: 92%;
+    padding: 40px 24px;
+    border-radius: 18px;
+  }
+
+  .hero-content h1 { font-size: 2rem; }
+  .hero-content p  { font-size: 0.95rem; }
+
+  .subtext { font-size: 0.9rem; padding: 18px; }
+
+  /* ── About (index home-desc) ── */
+  .home-title-row,
+  .about-title-row {
+    max-width: 100%;
+    padding: 0 4%;
+  }
+
+  .home-title-row h1,
+  .about-title-row h1 { font-size: 2.4rem; }
+
+  .home-desc-card,
+  .about-desc-card {
+    max-width: 100%;
+    padding: 22px 20px;
+    margin: 0 4%;
+    width: auto;
+  }
+
+  .home-desc-card .lead,
+  .about-desc-card .lead { font-size: 1.2rem; }
+
+  .home-desc-card .sub,
+  .about-desc-card .sub  { font-size: 1rem; }
+
+  /* ── About page (propuesta/team) ── */
+  .about { padding: 120px 16px 80px; }
+  .about-container { padding: 30px 20px; }
+  .about-text h2 { font-size: 1.6rem; }
+
+  .about-team { gap: 20px; }
+  .member { width: 140px; }
+  .member img { height: 170px; }
+
+  /* ── Mission/Vision ── */
+  .mission-vision { padding: 120px 16px 80px; }
+  .mission-vision-container { padding: 36px 20px; width: 92%; }
+  .mission-vision-container h2 { font-size: 1.8rem; margin-bottom: 24px; }
+  .mission-vision-content { flex-direction: column; gap: 24px; text-align: center; }
+  .divider { display: none; }
+
+  /* ── Services ── */
+  .services { padding: 120px 16px 80px; }
+  .services-container { padding: 36px 20px; width: 92%; }
+  .services-container h2 { font-size: 1.8rem; margin-bottom: 24px; }
+  .service { width: 100%; padding: 20px; }
+
+  /* ── Products carousel: scroll snap ── */
+  .products { padding: 120px 8px 80px; }
+  .products-container { padding: 26px 10px; width: 98%; }
+  .products-container h2 { font-size: 1.5rem; margin-bottom: 18px; }
+
+  /* Carousel layout tweaks for mobile */
+  .arrow { 
+    width: 32px; 
+    height: 32px; 
+    font-size: 1.2rem; 
+    border-radius: 50%;
+    z-index: 20;
+  }
+  .arrow.left  { left: 4px; }
+  .arrow.right { right: 4px; }
+
+  .carousel-track {
+    display: flex;
+    overflow: hidden; /* Hide scrollbar completely, we use JS arrows now */
+    gap: 14px;
+    padding: 10px 16px 16px;
+  }
+
+  .product-card {
+    flex: 0 0 calc(100vw - 80px); /* Leave room for arrows on sides */
+    min-width: 0;
+    max-width: 320px;
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .product-card img,
+  .product-card video {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .product-card h3 { font-size: 1rem; }
+  .product-card .price { font-size: 1rem; }
+  .product-card .btn { font-size: 0.85rem; padding: 9px 14px; }
+
+  /* ── Contact ── */
+  .contact-section { padding: 120px 16px 80px; }
+  .contact-card { flex-direction: column; padding: 24px 20px; text-align: center; width: 92%; }
+  .contact-info h1 { font-size: 1.6rem; }
+  .contact-image img { max-width: 300px; }
+
+  /* ── Closing ── */
+  .closing { padding: 120px 16px 80px; }
+  .closing-container { padding: 40px 24px; width: 92%; }
+  .closing-container h1 { font-size: 2rem; }
+  .closing-container p  { font-size: 0.95rem; }
+}
+
+/* -------- EXTRA SMALL: ≤ 480px -------- */
+@media (max-width: 480px) {
+  .navbar { top: 8px; width: 94%; padding: 10px 16px; }
+  .logo { font-size: 1rem; }
+
+  .hero-content h1 { font-size: 1.6rem; }
+  .home-title-row h1,
+  .about-title-row h1 { font-size: 1.8rem; }
+
+  .home-desc-card .lead,
+  .about-desc-card .lead { font-size: 1rem; }
+
+  .product-card { min-width: 170px; flex: 0 0 170px; }
+  .product-card img { height: 140px; }
+
+  .about-team { flex-direction: column; align-items: center; }
+  .member { width: 160px; }
+
+  .mission-vision-container h2,
+  .services-container h2,
+  .products-container h2 { font-size: 1.4rem; }
+
+  .closing-container h1 { font-size: 1.6rem; }
+}
+

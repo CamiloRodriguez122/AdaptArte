@@ -182,3 +182,109 @@ input:focus, select:focus {
 }
 
 .btn.buy:hover { background: var(--btn-hover); }
+
+/* ============================================================
+   📱 RESPONSIVE — BUY PAGE
+   ============================================================ */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1100;
+}
+.hamburger span { display: block; width: 24px; height: 3px; background: var(--text-primary); border-radius: 3px; transition: 0.3s; }
+.hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+
+  .navbar {
+    top: 12px;
+    border-radius: 20px;
+    padding: 14px 22px;
+    width: 92%;
+    flex-wrap: wrap; /* Permite que el menú baje a la siguiente línea */
+    position: fixed;
+    align-items: center;
+  }
+
+  /* El nav wrapper necesita ocupar el 100% para empujar los links abajo */
+  .navbar nav { width: 100%; }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 16px 0 8px;
+  }
+
+  /* Animación suave al abrir en flex */
+  .nav-links.open {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .nav-links li { list-style: none; width: 100%; }
+
+  .nav-links a {
+    display: block;
+    padding: 14px 20px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #ffffff;
+    transition: 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: rgba(255,255,255,0.28);
+    border-color: rgba(255,255,255,0.5);
+    color: #ffffff;
+  }
+
+  body { background-attachment: scroll; }
+
+  /* Buy content layout: stack vertically */
+  .content-box {
+    flex-direction: column;
+    width: 92%;
+    padding: 30px 20px;
+    margin-top: 100px;
+    gap: 24px;
+  }
+
+  .image-section, .config-section { width: 100%; }
+  .image-section { text-align: center; }
+  .image-section img { max-width: 260px; height: auto; }
+
+  /* Dimension inputs: stack */
+  .dimensions { flex-direction: column; gap: 12px; }
+
+  .config-section h2 { font-size: 1.4rem; }
+  .config-section h3 { font-size: 1rem; }
+
+  #addToCartBtn { font-size: 0.95rem; padding: 12px; }
+}
+
+@media (max-width: 480px) {
+  .content-box { padding: 22px 16px; margin-top: 90px; }
+  .image-section img { max-width: 200px; }
+  .config-section h2 { font-size: 1.2rem; }
+}
