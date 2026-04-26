@@ -15,6 +15,14 @@
   --btn-active-bg:  rgba(255, 255, 255, 0.92);
   --btn-hover:      rgba(255, 255, 255, 1.00);
   --shadow:         0 4px 25px rgba(80, 45, 15, 0.15);
+
+  /* === COLORES DE ACENTO === */
+  --accent:         #E8622A;          /* terracota vibrante */
+  --accent-light:   rgba(232, 98, 42, 0.18);
+  --accent-glow:    rgba(232, 98, 42, 0.45);
+  --accent2:        #F4A832;          /* ámbar cálido */
+  --accent2-light:  rgba(244, 168, 50, 0.15);
+  --shadow-accent:  0 4px 30px rgba(232, 98, 42, 0.22);
 }
 
 * {
@@ -24,13 +32,77 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* --- FONDO GLOBAL (foto tal cual, sin overlay) --- */
+
+/* =============================================
+   🌀 PAGE TRANSITION OVERLAY
+   ============================================= */
+.page-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 98, 42, 0.92) 0%,
+    rgba(60, 30, 10, 0.96)  100%
+  );
+  z-index: 99990;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.page-overlay.fade-in  { opacity: 1; pointer-events: all; }
+.page-overlay.fade-out { opacity: 0; pointer-events: none; }
+
+/* =============================================
+   📝 SPLIT TEXT REVEAL
+   ============================================= */
+.split-word {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 0.2em;
+}
+
+.split-word span {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition:
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity   0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.split-word.revealed span {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* =============================================
+   🎨 BREATHING GRADIENT (hero card)
+   ============================================= */
+@keyframes breatheGradient {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* --- FONDO GLOBAL --- */
 body {
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
-  background: url('./Media/FondoNuevo2.jpeg') no-repeat center center fixed;
+  /* 'scroll' en vez de 'fixed' para que el parallax JS funcione */
+  background: url('./Media/FondoNuevo2.jpeg') no-repeat center 50%;
   background-size: cover;
+  background-attachment: scroll;
+}
+
+/* Secciones encima del canvas de partículas (z-index: 1) */
+section, header, footer, .home-desc-section,
+.about, .services, .products, .mission-vision,
+.contact-section, .closing {
+  position: relative;
+  z-index: 2;
 }
 
 /* --- NAVBAR FIJA --- */
@@ -67,21 +139,28 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: var(--text-primary);
   padding: 6px 18px;
   border-radius: 50px;
   border: 1px solid rgba(255,255,255,0.6);
   background: rgba(255, 255, 255, 0.88);
   color: #3d2b1f;
-  transition: 0.3s;
+  transition: background 0.35s ease, border-color 0.35s ease,
+              color 0.35s ease, box-shadow 0.35s ease;
   font-weight: 500;
 }
 
-.nav-links a:hover,
+.nav-links a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
 .nav-links a.active {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #3d2b1f;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 0 10px var(--accent-glow);
 }
 
 /* --- FOOTER FIJO --- */
@@ -120,6 +199,8 @@ body {
   padding-top: 150px;
   padding-bottom: 150px;
   transition: padding 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  z-index: 2;
 }
 
 .hero.scrolled {
@@ -128,20 +209,27 @@ body {
 }
 
 .hero-content {
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
+  background: linear-gradient(
+    -45deg,
+    rgba(232, 98, 42, 0.32),
+    rgba(195, 155, 110, 0.52),
+    rgba(244, 168, 50, 0.28),
+    rgba(180, 100, 40, 0.38)
+  );
+  background-size: 300% 300%;
+  animation: breatheGradient 7s ease infinite;
+  backdrop-filter: blur(14px);
   border-radius: 25px;
   padding: 60px 48px;
   text-align: center;
   width: 80%;
   max-width: 900px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-accent);
+  border: 1px solid rgba(232, 98, 42, 0.45);
   transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   opacity: 0;
   transform: translateY(30px);
-  overflow: hidden;
 }
 
 .hero-content.visible {
@@ -156,8 +244,13 @@ body {
   margin-bottom: 15px;
   line-height: 1;
   white-space: nowrap;
-  transition: font-size 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: font-size 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              text-shadow 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   font-family: 'Montserrat', sans-serif;
+  text-shadow:
+    0 0 40px rgba(232, 98, 42, 0.65),
+    0 0 80px rgba(232, 98, 42, 0.30),
+    0 2px 8px rgba(0,0,0,0.25);
 }
 
 .hero.scrolled .hero-content h1 {
@@ -208,12 +301,17 @@ body {
 .about-container {
   width: 85%;
   max-width: 1000px;
-  background: var(--bg-card);
+  background: linear-gradient(
+    135deg,
+    rgba(232, 98, 42, 0.20) 0%,
+    rgba(195, 155, 110, 0.44) 50%,
+    rgba(244, 168, 50, 0.16) 100%
+  );
   backdrop-filter: blur(10px);
   border-radius: 25px;
   padding: 60px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-accent);
+  border: 1px solid rgba(232, 98, 42, 0.38);
   text-align: center;
   opacity: 0;
   transform: translateY(40px);
@@ -231,6 +329,19 @@ body {
   color: var(--text-primary);
   font-weight: 700;
   margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+}
+
+.about-text h2::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 2px;
+  margin: 8px auto 0;
+  opacity: 0.85;
 }
 
 .about-text p {
@@ -247,17 +358,23 @@ body {
 }
 
 .member {
-  background: rgba(195, 155, 110, 0.45);
+  background: linear-gradient(
+    160deg,
+    rgba(232, 98, 42, 0.22) 0%,
+    rgba(195, 155, 110, 0.45) 100%
+  );
   border-radius: 20px;
   overflow: hidden;
   width: 180px;
   box-shadow: var(--shadow);
-  transition: transform 0.4s ease;
-  border: 1px solid var(--border-color);
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(232, 98, 42, 0.30);
 }
 
 .member:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 28px var(--accent-glow);
 }
 
 .member img {
@@ -390,17 +507,25 @@ body {
 .service {
   width: 80%;
   max-width: 800px;
-  background: rgba(195, 155, 110, 0.35);
+  background: linear-gradient(
+    135deg,
+    rgba(232, 98, 42, 0.18) 0%,
+    rgba(195, 155, 110, 0.35) 60%,
+    rgba(244, 168, 50, 0.12) 100%
+  );
   padding: 25px 35px;
   border-radius: 20px;
   box-shadow: var(--shadow);
-  border: 1px solid var(--border-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(232, 98, 42, 0.35);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.5s ease;
 }
 
 .service:hover {
   transform: translateY(-8px);
-  box-shadow: 0 6px 25px rgba(80,45,15,0.2);
+  box-shadow: 0 8px 30px var(--accent-glow);
+  border-color: rgba(232, 98, 42, 0.65);
 }
 
 .service h3 {
@@ -794,9 +919,10 @@ body {
 
   .nav-links a:hover,
   .nav-links a.active {
-    background: rgba(255,255,255,0.28);
-    border-color: rgba(255,255,255,0.5);
+    background: var(--accent);
+    border-color: var(--accent);
     color: #ffffff;
+    box-shadow: 0 0 12px var(--accent-glow);
   }
 
   /* ── Body background ── */
