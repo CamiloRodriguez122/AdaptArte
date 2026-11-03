@@ -1,6 +1,6 @@
 // 🚚 Checkout — datos de envío
 const cartData   = JSON.parse(localStorage.getItem('cartData'));
-const legacyData = JSON.parse(localStorage.getItem('adaptarteProduct'));
+const legacyData = JSON.parse(localStorage.getItem('adaptarqsProduct'));
 
 // Usar cualquiera de los dos storages (compatibilidad)
 const product = cartData || legacyData;
@@ -9,22 +9,20 @@ const img      = document.getElementById('productImage');
 const colorRow = document.getElementById('colorRow');
 
 if (product) {
-  document.getElementById('productName').textContent = product.name || 'Silla AdaptArte';
+  document.getElementById('productName').textContent = product.name || 'Mobiliario AdaptArqs';
 
   const qty   = product.qty   || product.quantity || 1;
   const total = product.total || (product.price * qty);
 
   document.getElementById('productQuantity').textContent =
     qty + (qty == 1 ? ' unidad' : ' unidades');
-  document.getElementById('productTotal').textContent =
-    '$' + parseFloat(total).toFixed(2).replace('.', ',');
+  document.getElementById('productTotal').textContent = formatCOP(total);
 
   // Imagen o video
   if (product.type === 'image') {
-    img.src = product.source || `./Productos/Silla_${product.color || 'beige'}.jpg`;
-    document.getElementById('productColor').textContent =
-      (product.color || 'beige').charAt(0).toUpperCase() +
-      (product.color || 'beige').slice(1);
+    img.src = product.source;
+    if (product.color) document.getElementById('productColor').textContent = product.color;
+    else if (colorRow) colorRow.style.display = 'none';
   } else if (product.type === 'video') {
     img.style.display = 'none';
     if (colorRow) colorRow.style.display = 'none';

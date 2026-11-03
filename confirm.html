@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdaptArte | ¡Pedido Confirmado!</title>
+  <title>AdaptArqs | ¡Pedido Confirmado!</title>
   <link rel="stylesheet" href="style.css">
   <style>
     .confirm-page {
@@ -159,14 +159,13 @@
 
   <!-- NAVBAR -->
   <header class="navbar">
-    <div class="logo">ADAPTARTE</div>
+    <div class="logo">ADAPTARQS</div>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="products.html">Products</a></li>
-        <li><a href="buy.html">Buy</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="closing.html">Closing</a></li>
       </ul>
@@ -197,7 +196,7 @@
         </p>
 
         <div class="confirm-detail" id="orderDetail">
-          <p><strong>Producto:</strong> <span id="confProductName">Silla AdaptArte</span></p>
+          <p><strong>Producto:</strong> <span id="confProductName">-</span></p>
           <p><strong>Total pagado:</strong> <span id="confTotal">-</span></p>
           <p><strong>Envío a:</strong> <span id="confAddress">-</span></p>
           <p><strong>Tiempo estimado de entrega:</strong> <span id="confDelivery">~15 días hábiles</span></p>
@@ -209,6 +208,7 @@
     </div>
   </main>
 
+  <script src="productos.js"></script>
   <script>
     const cart     = JSON.parse(localStorage.getItem('cartData'));
     const shipping = JSON.parse(localStorage.getItem('shippingData'));
@@ -225,8 +225,8 @@
     document.getElementById('confDelivery').textContent = '~' + days + ' días hábiles';
 
     if (cart) {
-      document.getElementById('confProductName').textContent = cart.name || 'Silla AdaptArte';
-      document.getElementById('confTotal').textContent = '$' + parseFloat(cart.total || 0).toFixed(2).replace('.', ',');
+      document.getElementById('confProductName').textContent = cart.name || 'Mobiliario AdaptArqs';
+      document.getElementById('confTotal').textContent = formatCOP(cart.total);
     }
 
     if (shipping) {
@@ -239,7 +239,7 @@
     localStorage.removeItem('cartData');
     localStorage.removeItem('shippingData');
     localStorage.removeItem('selectedProduct');
-    localStorage.removeItem('adaptarteProduct');
+    localStorage.removeItem('adaptarqsProduct');
   </script>
 
 </body>

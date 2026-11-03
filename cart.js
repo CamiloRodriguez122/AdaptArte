@@ -1,5 +1,5 @@
 // 🛒 Cargar producto desde localStorage
-const productData = JSON.parse(localStorage.getItem('adaptarteProduct'))
+const productData = JSON.parse(localStorage.getItem('adaptarqsProduct'))
                  || JSON.parse(localStorage.getItem('selectedProduct'));
 
 const nameEl      = document.getElementById('cartProductName');
@@ -10,14 +10,12 @@ const totalEl     = document.getElementById('cartTotal');
 const qtyDisplay  = document.getElementById('qty-display');
 const promoMsgEl  = document.getElementById('promoMsg');
 
-let basePrice    = productData ? productData.price : 100;
-let qty          = 1;
+let basePrice    = productData ? productData.price : 0;
+let qty          = parseInt(productData?.quantity) || 1;
 let discount     = 0;  // porcentaje de descuento (0‑1)
-const PROMO_CODE = 'ADAPTARTE10';
+const PROMO_CODE = 'ADAPTARQS10';
 
-function fmt(n) {
-  return '$' + n.toFixed(2).replace('.', ',');
-}
+const fmt = formatCOP;
 
 function updateDisplay() {
   const discounted = basePrice * (1 - discount);
@@ -70,10 +68,10 @@ document.getElementById('goToPayment').addEventListener('click', (e) => {
   const totalFinal = discounted * qty;
 
   const cartData = {
-    name:     productData?.name || 'Silla AdaptArte',
+    name:     productData?.name || 'Mobiliario AdaptArqs',
     type:     productData?.type || 'image',
     source:   productData?.source || '',
-    color:    productData?.color || 'beige',
+    color:    productData?.color || null,
     price:    basePrice,
     discount: discount,
     qty:      qty,
