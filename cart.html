@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdaptArte | Carrito</title>
+  <title>AdaptArqs | Carrito</title>
   <link rel="stylesheet" href="style.css">
   <style>
     /* ---- CART PAGE ESPECÍFICO ---- */
@@ -293,14 +293,13 @@
 
   <!-- NAVBAR -->
   <header class="navbar">
-    <div class="logo">ADAPTARTE</div>
+    <div class="logo">ADAPTARQS</div>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="products.html">Products</a></li>
-        <li><a href="buy.html" class="active">buy</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="closing.html">Closing</a></li>
       </ul>
@@ -328,10 +327,10 @@
 
         <!-- Producto -->
         <div class="cart-item">
-          <span class="cart-item-name" id="cartProductName">SILLA PLEGABLE</span>
+          <span class="cart-item-name" id="cartProductName">-</span>
           <div class="cart-item-pricing">
-            <span class="price-original" id="cartOriginalPrice">$100,00</span>
-            <span class="price-current" id="cartCurrentPrice">$100,00</span>
+            <span class="price-original" id="cartOriginalPrice">$0</span>
+            <span class="price-current" id="cartCurrentPrice">$0</span>
           </div>
         </div>
 
@@ -340,7 +339,7 @@
           <button class="qty-btn" id="qtyMinus">−</button>
           <span id="qty-display">1</span>
           <button class="qty-btn" id="qtyPlus">+</button>
-          <span class="item-subtotal" id="itemSubtotal">$100,00</span>
+          <span class="item-subtotal" id="itemSubtotal">$0</span>
         </div>
 
         <hr class="cart-divider">
@@ -348,7 +347,7 @@
         <!-- Código de promoción -->
         <span class="promo-label">Ingresar Código de Promocion</span>
         <div class="promo-row">
-          <input type="text" class="promo-input" id="promoCode" placeholder="Ej: ADAPTARTE10">
+          <input type="text" class="promo-input" id="promoCode" placeholder="Ej: ADAPTARQS10">
           <button class="promo-btn" id="applyPromo">Aplicar</button>
         </div>
         <div class="promo-msg" id="promoMsg"></div>
@@ -358,7 +357,7 @@
         <!-- Total -->
         <div class="total-row">
           <span class="total-label">Total estimado</span>
-          <span class="total-amount" id="cartTotal">$100,00</span>
+          <span class="total-amount" id="cartTotal">$0</span>
         </div>
         <p class="tax-note">Los impuestos y costos de envio se calculan en la pagina de pago.</p>
 
@@ -371,6 +370,7 @@
     </div>
   </main>
 
+  <script src="productos.js"></script>
   <script src="cart.js"></script>
 </body>
 </html>

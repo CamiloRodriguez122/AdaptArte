@@ -614,6 +614,15 @@ section, header, footer, .home-desc-section,
   margin-bottom: 5px;
 }
 
+.product-card .subtitle {
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  min-height: 2.7em;
+  margin-bottom: 6px;
+  opacity: 0.9;
+}
+
 .product-card .price {
   color: var(--text-secondary);
   font-size: 0.95rem;
