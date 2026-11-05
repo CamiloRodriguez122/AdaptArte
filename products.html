@@ -3,176 +3,174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo | AdaptArqs</title>
-  <meta name="description" content="Diez piezas de mobiliario plegable y multifuncional en roble y MDF. Precios en COP y entrega en 15 días.">
-  <meta name="theme-color" content="#ffffff">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%238c3800'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=Raleway:wght@700&display=swap">
+  <title>AdaptArqs | Productos</title>
   <link rel="stylesheet" href="style.css">
-  <script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!/motion=full/.test(location.search))document.documentElement.classList.add('rm')</script>
-</head>
-<body>
-  <a class="skip-link" href="#main">Saltar al contenido</a>
 
-  <header class="site-header">
-    <div class="wrap">
-      <a class="wordmark" href="index.html">AdaptArqs</a>
-      <nav class="site-nav" id="site-nav" aria-label="Principal">
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="products.html" aria-current="page">Catálogo</a></li>
-          <li><a href="about.html">Nosotros</a></li>
-          <li><a href="services.html">Servicios</a></li>
-          <li><a href="contact.html">Contacto</a></li>
-        </ul>
-        <div class="nav-contact">
-          <span>Escríbenos</span>
-          <a href="mailto:adaptartearq@gmail.com">adaptartearq@gmail.com</a>
-          <a href="tel:+573117015904">311 701 5904</a>
-        </div>
-      </nav>
-      <a class="cart-link" href="cart.html" aria-label="Carrito, 0 productos">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-        <span class="cart-label">Carrito</span>
-        <span class="cart-count" data-cart-count data-empty="true">0</span>
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span></button>
-    </div>
+</head>
+
+<body>
+  <!-- 🔝 NAVBAR -->
+  <header class="navbar">
+    <div class="logo">AdaptArqs</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="products.html" class="active">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="closing.html">Closing</a></li>
+      </ul>
+    </nav>
   </header>
 
-    <main id="main">
-    <section class="wrap page-head" aria-labelledby="cat-title">
-      <h1 id="cat-title">El <em>catálogo</em></h1>
-      <p>Diez piezas plegables y multifuncionales en roble y MDF, con entrega en 15 días. Cada una nace como un plano y se construye hasta el objeto.</p>
-    </section>
+  <!-- 🪑 PRODUCTOS -->
+  <section class="products">
+    <div class="products-container">
+      <h2>GALERÍA DE PRODUCTOS</h2>
 
-    <section aria-label="Piezas del catálogo">
-      <div class="wrap catalog-tools">
-        <div class="chips" role="group" aria-label="Filtrar por categoría" id="chips"></div>
-        <label class="select">Ordenar
-          <select id="sort">
-            <option value="featured">Destacados</option>
-            <option value="asc">Precio: menor a mayor</option>
-            <option value="desc">Precio: mayor a menor</option>
-          </select>
-        </label>
-      </div>
-
-      <div class="rail-shell" data-rail-shell>
-        <div class="rail catalog-rail" id="catalogRail" tabindex="0" aria-label="Galería del catálogo" aria-live="polite"></div>
-        <div class="wrap rail-controls">
-          <div class="rail-track"><span class="rail-thumb"></span></div>
-          <div class="rail-arrows">
-            <button class="icon-btn" type="button" data-rail-prev aria-label="Ver piezas anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 12H5m5-5-5 5 5 5"/></svg></button>
-            <button class="icon-btn" type="button" data-rail-next aria-label="Ver más piezas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></button>
-          </div>
+      <div class="carousel">
+        <button class="arrow left" id="prevBtn">&#10094;</button>
+        <div class="carousel-track" id="carouselTrack">
         </div>
+        <button class="arrow right" id="nextBtn">&#10095;</button>
       </div>
-    </section>
-
-    <section class="section wrap" aria-labelledby="index-title">
-      <div class="section-head">
-        <div>
-          <h2 id="index-title">Índice de <em>piezas</em></h2>
-          <p>Todo el catálogo en una sola vista, con su categoría y precio.</p>
-        </div>
-      </div>
-      <ul class="index-list" id="indexList"></ul>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-head">
-        <p class="footer-mark">AdaptArqs</p>
-        <p class="footer-tag serif-italic">Mobiliario adaptable para todos</p>
-      </div>
-      <div class="rule" aria-hidden="true"></div>
-      <div class="footer-grid">
-        <div>
-          <h2>Tienda</h2>
-          <ul><li><a href="products.html">Catálogo</a></li><li><a href="cart.html">Carrito</a></li><li><a href="services.html">Servicios</a></li></ul>
-        </div>
-        <div>
-          <h2>Marca</h2>
-          <ul><li><a href="about.html">Nosotros</a></li><li><a href="contact.html">Contacto</a></li></ul>
-        </div>
-        <div>
-          <h2>Contacto</h2>
-          <ul><li><a href="mailto:adaptartearq@gmail.com">adaptartearq@gmail.com</a></li><li><a href="tel:+573117015904">311 701 5904</a></li><li>Entregas en 15 días</li></ul>
-        </div>
-      </div>
-      <div class="footer-legal"><span>© 2026 AdaptArqs. Todos los derechos reservados.</span><span>Precios en pesos colombianos (COP).</span></div>
     </div>
+  </section>
+
+  <!-- 🔻 FOOTER -->
+  <footer class="footer">
+    <p>SOLUCIONES DIGITALES Y ESCALABLES <span>04</span></p>
   </footer>
 
-  <script src="productos.js"></script>
-  <script src="script.js"></script>
-  <script>
-    // 🪑 Catálogo: galería móvil con filtros y orden, más el índice de piezas
-    (function setupCatalog() {
-      const rail   = document.getElementById('catalogRail');
-      const chips  = document.getElementById('chips');
-      const sortEl = document.getElementById('sort');
-      const shell  = rail.closest('[data-rail-shell]');
-      const params = new URLSearchParams(location.search);
-      let filter   = CATEGORIES.some(c => c.id === params.get('c')) ? params.get('c') : 'all';
+<script src="productos.js"></script>
+<script>
+  // 🪑 Tarjetas de la galería generadas desde el catálogo
+  document.getElementById('carouselTrack').innerHTML = PRODUCTS.map(p => `
+          <div class="product-card">
+            ${p.videoZoom ? `<div class="video-crop" style="--zoom: ${p.videoZoom}">` : ''}
+            <video muted loop playsinline preload="none" poster="${p.image}" aria-label="${p.name}: ${p.subtitle}">
+              <source src="${p.video}" type="video/mp4">
+            </video>
+            ${p.videoZoom ? '</div>' : ''}
+            <h3>${p.name}</h3>
+            <p class="subtitle">${p.subtitle}</p>
+            <p class="price">${formatCOP(p.price)}</p>
+            <a href="buy.html?p=${p.id}" class="btn">Comprar</a>
+          </div>`).join('');
+</script>
 
-      rail.innerHTML = PRODUCTS.map((p, i) => productCardHTML(p, { eager: i < 3 })).join('');
+<script>
+  // 🎠 Carrusel infinito: avanza solo, se pausa con el cursor y recicla las tarjetas
+  (function infiniteCarousel() {
+    const track    = document.getElementById('carouselTrack');
+    const carousel = track.parentElement;
+    const prevBtn  = document.getElementById('prevBtn');
+    const nextBtn  = document.getElementById('nextBtn');
+    const SPEED    = 45;   // px por segundo
+    let offset = 0, last = performance.now(), hovering = false, dragging = false, holdUntil = 0, tween = null;
 
-      const counts = id => PRODUCTS.filter(p => id === 'all' || p.category === id).length;
-      chips.innerHTML = [{ id: 'all', name: 'Todo' }, ...CATEGORIES].map(c =>
-        `<button class="chip" type="button" data-filter="${c.id}" aria-pressed="${c.id === filter}">${c.name} <small>${counts(c.id)}</small></button>`
-      ).join('');
+    // El movimiento es por transform; el scroll nativo queda desactivado
+    track.style.overflow = 'visible';
+    track.style.willChange = 'transform';
+    track.style.touchAction = 'pan-y';
 
-      document.getElementById('indexList').innerHTML = PRODUCTS.map(p => `
-        <li><a href="buy.html?p=${p.id}">
-          <span class="index-name"><em>${p.name}</em><small>${p.subtitle}</small></span>
-          <span class="index-cat">${categoryName(p.category)}</span>
-          <span class="index-price">${formatCOP(p.price)}</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg>
-        </a></li>`).join('');
+    const gap    = () => parseFloat(getComputedStyle(track).columnGap) || 25;
+    const stepOf = el => el.getBoundingClientRect().width + gap();
 
-      function apply() {
-        const cards = [...rail.children];
-        const order = sortEl.value;
-        cards.sort((a, b) => {
-          const pa = getProduct(a.dataset.id), pb = getProduct(b.dataset.id);
-          if (order === 'asc')  return pa.price - pb.price;
-          if (order === 'desc') return pb.price - pa.price;
-          return PRODUCTS.indexOf(pa) - PRODUCTS.indexOf(pb);
-        }).forEach(c => {
-          c.hidden = filter !== 'all' && c.dataset.category !== filter;
-          rail.appendChild(c);
-        });
-        chips.querySelectorAll('.chip').forEach(ch => ch.setAttribute('aria-pressed', ch.dataset.filter === filter));
-        rail.scrollLeft = 0;
-        shell._updateRail && shell._updateRail();
+    // Pasa al final la tarjeta que salió por la izquierda (y al revés) para que nunca se acabe
+    function recycle() {
+      let first = track.firstElementChild;
+      while (first && offset >= stepOf(first)) {
+        const s = stepOf(first);
+        offset -= s;
+        if (tween) { tween.from -= s; tween.to -= s; }
+        track.appendChild(first);
+        first = track.firstElementChild;
       }
-
-      // Las tarjetas se reacomodan con una transición suave cuando el navegador la soporta
-      function update() {
-        if (!document.startViewTransition || REDUCED_MOTION) return apply();
-        [...rail.children].forEach(c => { c.style.viewTransitionName = 'card-' + c.dataset.id; });
-        const t = document.startViewTransition(apply);
-        t.finished.finally(() => [...rail.children].forEach(c => { c.style.viewTransitionName = ''; }));
+      while (offset < 0) {
+        const lastCard = track.lastElementChild;
+        const s = stepOf(lastCard);
+        track.prepend(lastCard);
+        offset += s;
+        if (tween) { tween.from += s; tween.to += s; }
       }
+    }
 
-      chips.addEventListener('click', e => {
-        const chip = e.target.closest('[data-filter]');
-        if (!chip || chip.dataset.filter === filter) return;
-        filter = chip.dataset.filter;
-        const url = new URL(location.href);
-        if (filter === 'all') url.searchParams.delete('c'); else url.searchParams.set('c', filter);
-        history.replaceState(null, '', url);
-        update();
+    function frame(now) {
+      const dt = Math.min(64, now - last) / 1000;
+      last = now;
+      if (tween) {
+        const k = Math.min(1, (now - tween.start) / tween.dur);
+        offset = tween.from + (tween.to - tween.from) * (1 - Math.pow(1 - k, 3));
+        if (k >= 1) tween = null;
+      } else if (!hovering && !dragging && now > holdUntil) {
+        offset += SPEED * dt;
+      }
+      recycle();
+      track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+      requestAnimationFrame(frame);
+    }
+
+    // Flechas: llevan la siguiente o la anterior tarjeta al borde, con suavidad
+    function nudge(dir) {
+      const now = performance.now();
+      let to;
+      if (dir > 0) to = stepOf(track.firstElementChild);
+      else to = offset > 8 ? 0 : -stepOf(track.lastElementChild);
+      tween = { from: offset, to, start: now, dur: 560 };
+      holdUntil = now + 2600;
+    }
+    nextBtn.addEventListener('click', () => nudge(1));
+    prevBtn.addEventListener('click', () => nudge(-1));
+
+    // Pausa mientras el cursor o el foco están en el carrusel
+    carousel.addEventListener('mouseenter', () => { hovering = true; });
+    carousel.addEventListener('mouseleave', () => { hovering = false; });
+    carousel.addEventListener('focusin',  () => { hovering = true; });
+    carousel.addEventListener('focusout', () => { hovering = false; });
+
+    // Arrastre con el dedo en el celular
+    let startX = 0, startOffset = 0, moved = false;
+    track.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'mouse') return;
+      dragging = true; moved = false; tween = null;
+      startX = e.clientX; startOffset = offset;
+    });
+    window.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 6) moved = true;
+      offset = startOffset - dx;
+    });
+    const endDrag = () => { if (!dragging) return; dragging = false; holdUntil = performance.now() + 2600; };
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
+    track.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+
+    // 🎬 Videos: se reproducen al pasar el cursor; en el celular, cuando la tarjeta está a la vista
+    const cards = [...track.querySelectorAll('.product-card')];
+    const canHover = window.matchMedia('(hover: hover)').matches;
+    const play  = v => { const p = v.play(); if (p) p.catch(() => {}); };
+
+    if (canHover) {
+      cards.forEach(card => {
+        const v = card.querySelector('video');
+        card.addEventListener('mouseenter', () => play(v));
+        card.addEventListener('mouseleave', () => v.pause());
       });
-      sortEl.addEventListener('change', update);
+    } else if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => entries.forEach(entry => {
+        const v = entry.target.querySelector('video');
+        if (entry.intersectionRatio >= 0.6) play(v); else v.pause();
+      }), { root: carousel, threshold: [0, 0.6] });
+      cards.forEach(card => io.observe(card));
+    }
 
-      apply();
-    })();
-  </script>
+    requestAnimationFrame(frame);
+  })();
+</script>
+
+  <script src="script.js"></script>
 </body>
 </html>
