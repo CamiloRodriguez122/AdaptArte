@@ -241,7 +241,8 @@ section, header, footer, .home-desc-section,
   font-size: clamp(3rem, 10vw, 120px);
   color: var(--text-primary);
   font-weight: 900;
-  margin-bottom: 15px;
+  /* espacio para las colas de la "p" y la "q" de AdaptArqs */
+  margin-bottom: 0.3em;
   line-height: 1;
   white-space: nowrap;
   transition: font-size 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
