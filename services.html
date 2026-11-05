@@ -3,61 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdaptArqs | Our Services</title>
+  <title>Servicios | AdaptArqs</title>
+  <meta name="description" content="Diseño moderno, simulaciones 3D interactivas y modelos digitales de mobiliario adaptable.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%238c3800'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=Raleway:wght@700&display=swap">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!/motion=full/.test(location.search))document.documentElement.classList.add('rm')</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
 
-  <!-- 🔝 NAVBAR -->
-  <header class="navbar">
-    <div class="logo">ADAPTARQS</div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html" class="active">Services</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="closing.html">Closing</a></li>
-      </ul>
-    </nav>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="index.html">AdaptArqs</a>
+      <nav class="site-nav" id="site-nav" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="products.html">Catálogo</a></li>
+          <li><a href="about.html">Nosotros</a></li>
+          <li><a href="services.html" aria-current="page">Servicios</a></li>
+          <li><a href="contact.html">Contacto</a></li>
+        </ul>
+        <div class="nav-contact">
+          <span>Escríbenos</span>
+          <a href="mailto:adaptartearq@gmail.com">adaptartearq@gmail.com</a>
+          <a href="tel:+573117015904">311 701 5904</a>
+        </div>
+      </nav>
+      <a class="cart-link" href="cart.html" aria-label="Carrito, 0 productos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-label">Carrito</span>
+        <span class="cart-count" data-cart-count data-empty="true">0</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span></button>
+    </div>
   </header>
 
-  <!-- ⚙️ OUR SERVICES SECTION -->
-  <section class="services">
-    <div class="services-container">
-      <h2>OUR SERVICES</h2>
+    <main id="main">
+    <section class="wrap page-head" aria-labelledby="srv-title">
+      <h1 id="srv-title">Nuestros <em>servicios</em></h1>
+      <p>Del diseño de cada pieza a la compra en línea: todo pensado para que tu espacio funcione mejor.</p>
+    </section>
 
-      <div class="services-content">
-        <div class="service">
-          <h3>01 Diseño Moderno</h3>
-          <p>
-            Mobiliario plegable y adaptable a tus necesidades que optimiza tus espacios mediante diseño contemporáneo.
-          </p>
+    <section class="wrap" aria-label="Servicios">
+      <ul class="service-list">
+        <li data-reveal>
+          <h2>Diseño <em>moderno</em></h2>
+          <p>Mobiliario plegable y adaptable a tus necesidades que optimiza tus espacios mediante diseño contemporáneo.</p>
+        </li>
+        <li data-reveal>
+          <h2>Simulaciones 3D <em>interactivas</em></h2>
+          <p>Explora y personaliza tu mueble con visualización 3D interactiva antes de adquirirlo.</p>
+        </li>
+        <li data-reveal>
+          <h2>Modelos <em>digitales</em></h2>
+          <p>Compra de forma rápida y digital, accediendo a nuestros modelos desde cualquier lugar.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section wrap principles" aria-labelledby="srv-cta">
+      <div>
+        <h2 id="srv-cta" class="principles-statement">Cada pieza nace como un <em>plano.</em></h2>
+        <p class="muted" style="margin-top: var(--space-5); max-width: 30rem">Estación de trabajo con silla integrada, diseño ergonómico y almacenamiento incorporado: así es NOVA, del dibujo al objeto.</p>
+        <p style="margin-top: var(--space-6)">
+          <a class="btn" href="buy.html?p=nova">Ver NOVA · $1.400.000
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg>
+          </a>
+        </p>
+      </div>
+      <a class="plate principles-plate" href="buy.html?p=nova" aria-label="Ver NOVA: Escritorio ergonómico">
+        <img class="plate-photo" src="./Productos/catalogo/nova-sm.jpg" alt="NOVA: Escritorio ergonómico con silla integrada" loading="lazy" decoding="async">
+      </a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-head">
+        <p class="footer-mark">AdaptArqs</p>
+        <p class="footer-tag serif-italic">Mobiliario adaptable para todos</p>
+      </div>
+      <div class="rule" aria-hidden="true"></div>
+      <div class="footer-grid">
+        <div>
+          <h2>Tienda</h2>
+          <ul><li><a href="products.html">Catálogo</a></li><li><a href="cart.html">Carrito</a></li><li><a href="services.html">Servicios</a></li></ul>
         </div>
-
-        <div class="service">
-          <h3>02 Simulaciones 3D Interactivas</h3>
-          <p>
-            Explora y personaliza tu mueble con visualización 3D interactiva antes de adquirirlo.
-          </p>
+        <div>
+          <h2>Marca</h2>
+          <ul><li><a href="about.html">Nosotros</a></li><li><a href="contact.html">Contacto</a></li></ul>
         </div>
-
-        <div class="service">
-          <h3>03 Modelos Digitales</h3>
-          <p>
-            Compra de forma rápida y digital, accediendo a nuestros modelos desde cualquier lugar.
-          </p>
+        <div>
+          <h2>Contacto</h2>
+          <ul><li><a href="mailto:adaptartearq@gmail.com">adaptartearq@gmail.com</a></li><li><a href="tel:+573117015904">311 701 5904</a></li><li>Entregas en 15 días</li></ul>
         </div>
       </div>
+      <div class="footer-legal"><span>© 2026 AdaptArqs. Todos los derechos reservados.</span><span>Precios en pesos colombianos (COP).</span></div>
     </div>
-  </section>
-
-  <!-- 🔻 FOOTER -->
-  <footer class="footer">
-    <p>SOLUCIONES DIGITALES Y ESCALABLES <span>03</span></p>
   </footer>
 
+  <script src="productos.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

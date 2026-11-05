@@ -3,137 +3,318 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdaptArqs | Mobiliario Adaptable Para Todos</title>
+  <title>AdaptArqs | Mobiliario adaptable para todos</title>
+  <meta name="description" content="Muebles plegables y multifuncionales inspirados en la arquitectura flexible. Compra en línea con entrega en 15 días.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%238c3800'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=Raleway:wght@700&display=swap">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap">
-  <style>
-    /* ------ Sección descriptiva en index ------ */
-    .home-desc-section {
-      min-height: 100vh;
-      padding: 100px 6% 120px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 28px;
-    }
-
-    .home-title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      max-width: 780px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .home-title-row h1 {
-      font-size: 120px;
-      font-weight: 900;
-      color: #ffffff;
-      line-height: 1;
-      letter-spacing: -0.5px;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .home-page-num {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.75);
-      letter-spacing: 0.08em;
-    }
-
-    .home-desc-card {
-      background: rgba(160, 115, 75, 0.55);
-      backdrop-filter: blur(14px);
-      border-radius: 22px;
-      padding: 32px 48px;
-      max-width: 780px;
-      margin: 0 auto;
-      width: 100%;
-      box-shadow: 0 4px 25px rgba(60,30,10,0.18);
-      border: 1px solid rgba(255,255,255,0.18);
-    }
-
-    .home-desc-card .lead {
-      font-size: 50px;
-      font-weight: 700;
-      color: #ffffff;
-      text-align: center;
-      margin-bottom: 12px;
-      font-family: Arial, sans-serif;
-      font-style: italic;
-    }
-
-    .home-desc-card .sub {
-      font-size: 37px;
-      font-weight: 400;
-      color: #f5e6d0;
-      text-align: center;
-      line-height: 1.65;
-      font-family: 'Rotis Sans Serif', 'Arial', sans-serif;
-    }
-
-    /* ── Responsive ── */
-    .home-desc-section { scroll-snap-align: start; }
-
-    @media (max-width: 768px) {
-      .home-desc-section { padding: 80px 5% 80px; min-height: auto; }
-      .home-title-row { max-width: 100%; }
-      .home-title-row h1 { font-size: 2.4rem; }
-      .home-desc-card { max-width: 100%; padding: 22px 20px; }
-      .home-desc-card .lead { font-size: 1.2rem; }
-      .home-desc-card .sub  { font-size: 1rem; }
-    }
-
-    @media (max-width: 480px) {
-      .home-title-row h1 { font-size: 1.8rem; }
-      .home-desc-card .lead { font-size: 1rem; }
-      .home-desc-card .sub  { font-size: 0.9rem; }
-    }
-  </style>
+  <script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!/motion=full/.test(location.search))document.documentElement.classList.add('rm')</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">ADAPTARQS</div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="closing.html">Closing</a></li>
-      </ul>
-    </nav>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="index.html">AdaptArqs</a>
+      <nav class="site-nav" id="site-nav" aria-label="Principal">
+        <ul>
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="products.html">Catálogo</a></li>
+          <li><a href="about.html">Nosotros</a></li>
+          <li><a href="services.html">Servicios</a></li>
+          <li><a href="contact.html">Contacto</a></li>
+        </ul>
+        <div class="nav-contact">
+          <span>Escríbenos</span>
+          <a href="mailto:adaptartearq@gmail.com">adaptartearq@gmail.com</a>
+          <a href="tel:+573117015904">311 701 5904</a>
+        </div>
+      </nav>
+      <a class="cart-link" href="cart.html" aria-label="Carrito, 0 productos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-label">Carrito</span>
+        <span class="cart-count" data-cart-count data-empty="true">0</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span></button>
+    </div>
   </header>
 
-  <!-- 🏠 HOME SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>ADAPTARQS</h1>
-      <p>MOBILIARIO ADAPTABLE PARA TODOS</p>
-    </div>
-  </section>
+  <main id="main">
 
-  <!-- ✨ DESCRIPCIÓN (antes About Us) -->
-  <section class="home-desc-section">
-    <div class="home-title-row">
-      <h1>AdaptArqs</h1>
-      <span class="home-page-num">01</span>
-    </div>
-    <div class="home-desc-card">
-      <p class="lead">AdaptArqs transforma tu forma de habitar el espacio.</p>
-      <p class="sub">Diseñamos mobiliario inteligente que se<br>adapta a tu ritmo de vida...</p>
-    </div>
-  </section>
+    <!-- Portada: la pieza destacada pasa del plano a la foto -->
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Espacios que se <em>transforman.</em></h1>
+        <p class="hero-sub serif-italic">Mobiliario adaptable para todos</p>
+        <p class="hero-body">Diseñamos muebles plegables y multifuncionales, inspirados en la arquitectura flexible, para aprovechar cada metro sin renunciar al diseño ni a la comodidad.</p>
+        <div class="hero-actions">
+          <a class="btn btn--ghost" href="products.html">Ver el catálogo
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg>
+          </a>
+          <a class="link-arrow" href="about.html">Quiénes somos
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg>
+          </a>
+        </div>
+        <dl class="hero-facts">
+          <div><dt>Piezas</dt><dd>10 diseños</dd></div>
+          <div><dt>Entrega</dt><dd>15 días</dd></div>
+          <div><dt>Material</dt><dd>Roble y MDF</dd></div>
+        </dl>
+      </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>SOLUCIONES DIGITALES Y ESCALABLES <span>01</span></p>
+      <div class="hero-stage" data-stage aria-roledescription="carrusel" aria-label="Piezas destacadas">
+        <svg class="rings" viewBox="0 0 104 26" aria-hidden="true"><g fill="currentColor" fill-rule="evenodd"><path d="M13 .4a12.6 12.6 0 1 1 0 25.2A12.6 12.6 0 0 1 13 .4Zm0 7.1a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/><path d="M39 .4a12.6 12.6 0 1 1 0 25.2A12.6 12.6 0 0 1 39 .4Zm0 7.1a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/><path d="M65 .4a12.6 12.6 0 1 1 0 25.2A12.6 12.6 0 0 1 65 .4Zm0 7.1a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/><path d="M91 .4a12.6 12.6 0 1 1 0 25.2A12.6 12.6 0 0 1 91 .4Zm0 7.1a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/></g></svg>
+
+        <a class="plate stage-plate" data-build data-manual href="buy.html?p=velora" data-stage-link>
+          <img class="plate-plano" src="./Productos/catalogo/velora-plano.png" alt="" decoding="async">
+          <img class="plate-photo" src="./Productos/catalogo/velora.jpg" alt="VELORA: Sillón con superficie de trabajo integrada" fetchpriority="high" decoding="async">
+        </a>
+
+        <div class="stage-caption">
+          <p class="stage-name" aria-live="polite"><em data-stage-name>VELORA:</em> <span data-stage-sub>Sillón con superficie de trabajo integrada</span></p>
+          <p class="stage-meta"><span class="stage-price" data-stage-price>$1.000.000</span><span>Entrega en 15 días</span></p>
+          <div class="stage-buy">
+            <button class="btn" type="button" data-stage-add>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+              <span data-stage-add-label>Elegir color</span>
+            </button>
+            <div class="stage-pager">
+              <button class="icon-btn" type="button" data-stage-prev aria-label="Pieza anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 12H5m5-5-5 5 5 5"/></svg></button>
+              <span class="stage-count" data-stage-count>01 / 04</span>
+              <button class="icon-btn" type="button" data-stage-next aria-label="Pieza siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></button>
+              <button class="icon-btn" type="button" data-stage-pause aria-label="Pausar"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-icon-pause><rect x="7" y="5.5" width="3" height="13"/><rect x="14" y="5.5" width="3" height="13"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-icon-play hidden><path d="M8 5.5v13l10-6.5z"/></svg></button>
+            </div>
+          </div>
+          <div class="stage-progress" data-stage-progress><span></span></div>
+        </div>
+      </div>
+
+      <p class="hero-mark" aria-hidden="true" data-fit><span>AdaptArqs</span></p>
+    </section>
+
+    <!-- Galería móvil de la colección -->
+    <section class="section" aria-labelledby="col-title">
+      <div class="wrap section-head">
+        <div>
+          <h2 id="col-title">La <em>colección</em></h2>
+          <p>Diez piezas que se pliegan, se extienden y se transforman. Cada una nace como un plano.</p>
+        </div>
+        <a class="link-arrow" href="products.html">Ver todo el catálogo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg>
+        </a>
+      </div>
+      <div class="rail-shell" data-rail-shell>
+        <div class="rail" id="homeRail" tabindex="0" aria-label="Colección AdaptArqs"></div>
+        <div class="wrap rail-controls">
+          <div class="rail-track"><span class="rail-thumb"></span></div>
+          <div class="rail-arrows">
+            <button class="icon-btn" type="button" data-rail-prev aria-label="Ver piezas anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 12H5m5-5-5 5 5 5"/></svg></button>
+            <button class="icon-btn" type="button" data-rail-next aria-label="Ver más piezas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap" aria-hidden="true"><div class="rule"></div></div>
+
+    <!-- Principios de la marca -->
+    <section class="section wrap principles" aria-labelledby="pr-title">
+      <div>
+        <h2 id="pr-title" class="principles-statement">Los espacios deben adaptarse a las personas, <em>y no al contrario.</em></h2>
+        <ul class="principles-list">
+          <li><strong>Flexibilidad</strong><span>Espacios que se transforman.</span></li>
+          <li><strong>Funcionalidad</strong><span>Diseño al servicio del uso cotidiano.</span></li>
+          <li><strong>Adaptabilidad</strong><span>Soluciones para diferentes contextos.</span></li>
+        </ul>
+        <p style="margin-top: var(--space-6)">
+          <a class="link-arrow" href="about.html">Conoce la marca
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg>
+          </a>
+        </p>
+      </div>
+      <figure>
+        <a class="plate principles-plate" href="buy.html?p=orbe" aria-label="Ver ORBE: Comedor plegable">
+          <img class="plate-photo" src="./Productos/catalogo/orbe-sm.jpg" alt="ORBE: Comedor plegable con estantería integrada" loading="lazy" decoding="async">
+        </a>
+        <figcaption class="stage-meta" style="margin-top: var(--space-3)"><span><em class="serif-italic" style="color: var(--color-accent)">ORBE</em> · Comedor plegable</span><span class="stage-price">$1.800.000</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- Banda de confort -->
+    <section class="band" aria-labelledby="band-title">
+      <div class="band-grid">
+        <div class="band-copy" data-reveal>
+          <h2 id="band-title" class="band-word">CONFORT</h2>
+          <p class="band-line">El confort también se siente.</p>
+          <p>NÓRIA transmite elegancia, equilibrio y calidez mediante la integración de la cama con el almacenamiento y las estanterías laterales.</p>
+          <a class="btn btn--light" href="buy.html?p=noria">Ver NÓRIA · $2.500.000
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg>
+          </a>
+        </div>
+        <div class="plate band-plate">
+          <img class="plate-photo" src="./Productos/catalogo/noria.jpg" alt="NÓRIA: Cama con biblioteca integrada" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo comprar -->
+    <div class="wrap" aria-hidden="true" style="margin-top: var(--section-y)"><div class="rule"></div></div>
+    <section class="section wrap" aria-labelledby="steps-title">
+      <div class="section-head">
+        <h2 id="steps-title">Comprar es <em>simple</em></h2>
+      </div>
+      <ol class="steps">
+        <li data-reveal>
+          <h3>Elige tu pieza</h3>
+          <p>Explora el catálogo, revisa las especificaciones de cada pieza y escoge el color que va con tu espacio.</p>
+        </li>
+        <li data-reveal>
+          <h3>Confirma la entrega</h3>
+          <p>Indica tus datos y la dirección de entrega en un solo paso, desde el celular o el computador.</p>
+        </li>
+        <li data-reveal>
+          <h3>Recíbela en 15 días</h3>
+          <p>Cada ficha indica su tiempo de entrega. Te escribimos al correo para coordinar la llegada.</p>
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-head">
+        <p class="footer-mark">AdaptArqs</p>
+        <p class="footer-tag serif-italic">Mobiliario adaptable para todos</p>
+      </div>
+      <div class="rule" aria-hidden="true"></div>
+      <div class="footer-grid">
+        <div>
+          <h2>Tienda</h2>
+          <ul><li><a href="products.html">Catálogo</a></li><li><a href="cart.html">Carrito</a></li><li><a href="services.html">Servicios</a></li></ul>
+        </div>
+        <div>
+          <h2>Marca</h2>
+          <ul><li><a href="about.html">Nosotros</a></li><li><a href="contact.html">Contacto</a></li></ul>
+        </div>
+        <div>
+          <h2>Contacto</h2>
+          <ul><li><a href="mailto:adaptartearq@gmail.com">adaptartearq@gmail.com</a></li><li><a href="tel:+573117015904">311 701 5904</a></li><li>Entregas en 15 días</li></ul>
+        </div>
+      </div>
+      <div class="footer-legal"><span>© 2026 AdaptArqs. Todos los derechos reservados.</span><span>Precios en pesos colombianos (COP).</span></div>
+    </div>
   </footer>
 
+  <script src="productos.js"></script>
   <script src="script.js"></script>
+  <script>
+    // Galería de la colección
+    document.getElementById('homeRail').innerHTML = PRODUCTS.map(p => productCardHTML(p)).join('');
+
+    // 🎬 Portada: rota las piezas destacadas, cada una pasa del plano a la foto
+    (function setupStage() {
+      const stage = document.querySelector('[data-stage]');
+      const ids   = ['velora', 'ergon', 'noria', 'seren'];
+      const items = ids.map(getProduct);
+      const DUR   = 7000;
+      const plate = stage.querySelector('.stage-plate');
+      const plano = plate.querySelector('.plate-plano');
+      const photo = plate.querySelector('.plate-photo');
+      const progress = stage.querySelector('[data-stage-progress]');
+      const pauseBtn = stage.querySelector('[data-stage-pause]');
+      let index = 0, timer = null, paused = REDUCED_MOTION, hovering = false;
+
+      stage.style.setProperty('--stage-dur', DUR + 'ms');
+
+      // Precarga para que el cambio no muestre huecos
+      items.forEach(p => { new Image().src = p.image; new Image().src = p.plano; });
+
+      function render(p) {
+        stage.querySelector('[data-stage-name]').textContent  = p.name + ':';
+        stage.querySelector('[data-stage-sub]').textContent   = p.subtitle;
+        stage.querySelector('[data-stage-price]').textContent = formatCOP(p.price);
+        stage.querySelector('[data-stage-count]').textContent = `${String(index + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
+        stage.querySelector('[data-stage-add-label]').textContent = p.colors ? 'Elegir color' : 'Agregar al carrito';
+        plate.href = `buy.html?p=${p.id}`;
+        plate.setAttribute('aria-label', `Ver ${p.name}: ${p.subtitle}`);
+        photo.alt = `${p.name}: ${p.subtitle}`;
+      }
+
+      function restartProgress() {
+        progress.classList.remove('is-running', 'is-paused');
+        void progress.offsetWidth;
+        if (!paused) progress.classList.add('is-running');
+        if (hovering) progress.classList.add('is-paused');
+      }
+
+      function go(to) {
+        index = (to + items.length) % items.length;
+        const p = items[index];
+        if (REDUCED_MOTION) {
+          plano.src = p.plano; photo.src = p.image; render(p);
+          return;
+        }
+        plate.classList.add('is-leaving');
+        setTimeout(() => {
+          plano.src = p.plano;
+          photo.src = p.image;
+          render(p);
+          plate.classList.remove('is-leaving');
+          buildPlate(plate, 40);
+        }, 460);
+        schedule();
+      }
+
+      function schedule() {
+        clearTimeout(timer);
+        restartProgress();
+        if (paused) return;
+        timer = setTimeout(tick, DUR);
+      }
+
+      function tick() {
+        if (hovering) { timer = setTimeout(tick, 600); return; }
+        go(index + 1);
+      }
+
+      // Las piezas con colores se compran desde su ficha, donde se elige el color
+      stage.querySelector('[data-stage-add]').addEventListener('click', e => {
+        const p = items[index];
+        if (p.colors) { location.href = `buy.html?p=${p.id}#colorRow`; return; }
+        addToCart(p.id, null, 1);
+        markDone(e.currentTarget, 'Agregado');
+        showAddedToast(p, null);
+      });
+
+      stage.querySelector('[data-stage-next]').addEventListener('click', () => go(index + 1));
+      stage.querySelector('[data-stage-prev]').addEventListener('click', () => go(index - 1));
+
+      pauseBtn.addEventListener('click', () => {
+        paused = !paused;
+        pauseBtn.setAttribute('aria-label', paused ? 'Reproducir' : 'Pausar');
+        pauseBtn.querySelector('[data-icon-pause]').hidden = paused;
+        pauseBtn.querySelector('[data-icon-play]').hidden  = !paused;
+        schedule();
+      });
+      if (paused) {
+        pauseBtn.setAttribute('aria-label', 'Reproducir');
+        pauseBtn.querySelector('[data-icon-pause]').hidden = true;
+        pauseBtn.querySelector('[data-icon-play]').hidden  = false;
+      }
+
+      stage.addEventListener('pointerenter', () => { hovering = true;  progress.classList.add('is-paused'); });
+      stage.addEventListener('pointerleave', () => { hovering = false; progress.classList.remove('is-paused'); });
+      stage.addEventListener('focusin',  () => { hovering = true;  progress.classList.add('is-paused'); });
+      stage.addEventListener('focusout', () => { hovering = false; progress.classList.remove('is-paused'); });
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) schedule(); else clearTimeout(timer); });
+
+      // Primera construcción al cargar
+      buildPlate(plate, 260);
+      schedule();
+    })();
+  </script>
 </body>
 </html>
