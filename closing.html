@@ -3,40 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Closing | AdaptArqs</title>
+  <title>Gracias | AdaptArqs</title>
+  <meta name="description" content="Gracias por elegir AdaptArqs.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%238c3800'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=Raleway:wght@700&display=swap">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!/motion=full/.test(location.search))document.documentElement.classList.add('rm')</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">ADAPTARQS</div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="closing.html" class="active">Closing</a></li>
-      </ul>
-    </nav>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="index.html">AdaptArqs</a>
+      <nav class="site-nav" id="site-nav" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="products.html">Catálogo</a></li>
+          <li><a href="about.html">Nosotros</a></li>
+          <li><a href="services.html">Servicios</a></li>
+          <li><a href="contact.html">Contacto</a></li>
+        </ul>
+        <div class="nav-contact">
+          <span>Escríbenos</span>
+          <a href="mailto:adaptartearq@gmail.com">adaptartearq@gmail.com</a>
+          <a href="tel:+573117015904">311 701 5904</a>
+        </div>
+      </nav>
+      <a class="cart-link" href="cart.html" aria-label="Carrito, 0 productos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-label">Carrito</span>
+        <span class="cart-count" data-cart-count data-empty="true">0</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span></button>
+    </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <section class="closing">
-    <div class="closing-container">
-      <h1>¡Gracias por elegirnos!</h1>
-      <p>Tu confianza nos motiva a seguir innovando y brindando soluciones digitales que transforman ideas en realidades. Estamos felices de ser parte de tu crecimiento.</p>
-      <a href="index.html">Volver al inicio</a>
+    <main id="main" class="wrap closing">
+    <div>
+      <svg class="rings" viewBox="0 0 104 26" aria-hidden="true"><g fill="currentColor" fill-rule="evenodd"><path d="M13 .4a12.6 12.6 0 1 1 0 25.2A12.6 12.6 0 0 1 13 .4Zm0 7.1a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/><path d="M39 .4a12.6 12.6 0 1 1 0 25.2A12.6 12.6 0 0 1 39 .4Zm0 7.1a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/><path d="M65 .4a12.6 12.6 0 1 1 0 25.2A12.6 12.6 0 0 1 65 .4Zm0 7.1a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/><path d="M91 .4a12.6 12.6 0 1 1 0 25.2A12.6 12.6 0 0 1 91 .4Zm0 7.1a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/></g></svg>
+      <h1>¡Gracias por <em>elegirnos!</em></h1>
+      <p>Tu confianza nos motiva a seguir innovando y brindando soluciones que transforman ideas en realidades. Estamos felices de ser parte de tu crecimiento.</p>
+      <a class="btn" href="index.html">Volver al inicio</a>
     </div>
-  </section>
+  </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>Soluciones digitales y escalables <span>10</span></p>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-head">
+        <p class="footer-mark">AdaptArqs</p>
+        <p class="footer-tag serif-italic">Mobiliario adaptable para todos</p>
+      </div>
+      <div class="rule" aria-hidden="true"></div>
+      <div class="footer-grid">
+        <div>
+          <h2>Tienda</h2>
+          <ul><li><a href="products.html">Catálogo</a></li><li><a href="cart.html">Carrito</a></li><li><a href="services.html">Servicios</a></li></ul>
+        </div>
+        <div>
+          <h2>Marca</h2>
+          <ul><li><a href="about.html">Nosotros</a></li><li><a href="contact.html">Contacto</a></li></ul>
+        </div>
+        <div>
+          <h2>Contacto</h2>
+          <ul><li><a href="mailto:adaptartearq@gmail.com">adaptartearq@gmail.com</a></li><li><a href="tel:+573117015904">311 701 5904</a></li><li>Entregas en 15 días</li></ul>
+        </div>
+      </div>
+      <div class="footer-legal"><span>© 2026 AdaptArqs. Todos los derechos reservados.</span><span>Precios en pesos colombianos (COP).</span></div>
+    </div>
   </footer>
 
+  <script src="productos.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
