@@ -1,108 +1,86 @@
-// 🛒 Carrito: líneas, cantidades, código de promoción y totales
+// 🛒 Cargar producto desde localStorage
+const productData = JSON.parse(localStorage.getItem('adaptarqsProduct'))
+                 || JSON.parse(localStorage.getItem('selectedProduct'));
 
-// Pedidos guardados con la versión anterior (una sola pieza)
-(function migrateLegacy() {
-  try {
-    const legacy = JSON.parse(localStorage.getItem('adaptarqsProduct'));
-    if (legacy && legacy.id && getProduct(legacy.id) && readCart().length === 0) {
-      addToCart(legacy.id, legacy.color || null, parseInt(legacy.quantity) || 1);
-    }
-    ['adaptarqsProduct', 'selectedProduct', 'cartData'].forEach(k => localStorage.removeItem(k));
-  } catch (e) {}
-})();
+const nameEl      = document.getElementById('cartProductName');
+const origPriceEl = document.getElementById('cartOriginalPrice');
+const currPriceEl = document.getElementById('cartCurrentPrice');
+const subtotalEl  = document.getElementById('itemSubtotal');
+const totalEl     = document.getElementById('cartTotal');
+const qtyDisplay  = document.getElementById('qty-display');
+const promoMsgEl  = document.getElementById('promoMsg');
 
-const view    = document.getElementById('cartView');
-const empty   = document.getElementById('cartEmpty');
-const linesEl = document.getElementById('cartLines');
-const msgEl   = document.getElementById('promoMsg');
+let basePrice    = productData ? productData.price : 0;
+let qty          = parseInt(productData?.quantity) || 1;
+let discount     = 0;  // porcentaje de descuento (0‑1)
+const PROMO_CODE = 'ADAPTARQS10';
 
-function colorHex(product, name) {
-  const c = product.colors && product.colors.find(c => c.name === name);
-  return c ? c.hex : null;
+const fmt = formatCOP;
+
+function updateDisplay() {
+  const discounted = basePrice * (1 - discount);
+  const subtotal   = discounted * qty;
+
+  qtyDisplay.textContent    = qty;
+  origPriceEl.textContent   = fmt(basePrice);
+  currPriceEl.textContent   = discount > 0 ? fmt(discounted) : fmt(basePrice);
+  subtotalEl.textContent    = fmt(subtotal);
+  totalEl.textContent       = fmt(subtotal);
+
+  // Mostrar tachado solo si hay descuento
+  origPriceEl.style.display = discount > 0 ? 'inline' : 'none';
 }
 
-function lineHTML(l) {
-  const p = l.product;
-  const hex = colorHex(p, l.color);
-  return `
-    <li class="line" data-key="${l.key}">
-      <a class="line-photo" href="buy.html?p=${p.id}" tabindex="-1" aria-hidden="true"><img src="${p.imageSm}" alt=""></a>
-      <div class="line-info">
-        <h3><a href="buy.html?p=${p.id}"><em>${p.name}</em></a></h3>
-        <p class="line-sub">${p.subtitle}</p>
-        ${l.color ? `<p class="line-color"><i style="background:${hex}"></i>Color ${l.color}</p>` : ''}
-        <div class="line-actions">
-          <div class="qty" role="group" aria-label="Cantidad de ${p.name}">
-            <button type="button" data-dec aria-label="Quitar una unidad" ${l.qty <= 1 ? 'disabled' : ''}>−</button>
-            <output aria-live="polite">${l.qty}</output>
-            <button type="button" data-inc aria-label="Agregar una unidad" ${l.qty >= 20 ? 'disabled' : ''}>+</button>
-          </div>
-          <button class="line-remove" type="button" data-remove>Eliminar</button>
-        </div>
-      </div>
-      <p class="line-total">${formatCOP(l.total)}${l.qty > 1 ? `<small>${formatCOP(p.price)} c/u</small>` : ''}</p>
-    </li>`;
+// Nombre del producto
+if (productData) {
+  nameEl.textContent = productData.name.toUpperCase();
 }
 
-function renderTotals() {
-  const t = cartTotals();
-  document.getElementById('subtotal').textContent = formatCOP(t.subtotal);
-  document.getElementById('total').textContent    = formatCOP(t.total);
-  document.getElementById('discountRow').hidden   = !t.promo;
-  if (t.promo) {
-    document.getElementById('promoLabel').textContent = `(${t.promo})`;
-    document.getElementById('discount').textContent   = '−' + formatCOP(t.discount);
-  }
-}
-
-function render() {
-  const lines = cartLines();
-  view.hidden  = lines.length === 0;
-  empty.hidden = lines.length > 0;
-  linesEl.innerHTML = lines.map(lineHTML).join('');
-  renderTotals();
-}
-
-linesEl.addEventListener('click', e => {
-  const li = e.target.closest('.line');
-  if (!li) return;
-  const key  = li.dataset.key;
-  const line = readCart().find(i => lineKey(i.id, i.color) === key);
-  if (!line) return;
-
-  if (e.target.closest('[data-inc]')) { setLineQty(key, line.qty + 1); render(); }
-  if (e.target.closest('[data-dec]')) { setLineQty(key, line.qty - 1); render(); }
-  if (e.target.closest('[data-remove]')) {
-    li.classList.add('is-removing');
-    setTimeout(() => { removeLine(key); render(); }, REDUCED_MOTION ? 0 : 300);
-  }
+// Botones de cantidad
+document.getElementById('qtyMinus').addEventListener('click', () => {
+  if (qty > 1) { qty--; updateDisplay(); }
 });
 
-const promoInput = document.getElementById('promoCode');
-const current = readPromo();
-if (current) {
-  promoInput.value = current;
-  msgEl.textContent = `Código ${current} aplicado: 10% de descuento.`;
-  msgEl.classList.add('is-ok');
-}
+document.getElementById('qtyPlus').addEventListener('click', () => {
+  qty++;
+  updateDisplay();
+});
 
-document.getElementById('promoForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const code = promoInput.value.trim().toUpperCase();
-  if (!code) {
-    savePromo(null);
-    msgEl.textContent = 'Escribe un código para aplicarlo.';
-    msgEl.classList.remove('is-ok');
-  } else if (PROMOS[code]) {
-    savePromo(code);
-    msgEl.textContent = `Código ${code} aplicado: ${Math.round(PROMOS[code] * 100)}% de descuento.`;
-    msgEl.classList.add('is-ok');
+// Código de promoción
+document.getElementById('applyPromo').addEventListener('click', () => {
+  const code = document.getElementById('promoCode').value.trim().toUpperCase();
+  if (code === PROMO_CODE) {
+    discount = 0.10;
+    promoMsgEl.textContent = '✅ Código aplicado: 10% de descuento';
+    promoMsgEl.style.color = '#4a7c3d';
   } else {
-    savePromo(null);
-    msgEl.textContent = 'Ese código no es válido. Revisa que esté bien escrito.';
-    msgEl.classList.remove('is-ok');
+    discount = 0;
+    promoMsgEl.textContent = '❌ Código inválido';
+    promoMsgEl.style.color = '#8b3a2b';
   }
-  renderTotals();
+  updateDisplay();
 });
 
-render();
+// Guardar estado del carrito antes de ir al pago
+document.getElementById('goToPayment').addEventListener('click', (e) => {
+  e.preventDefault();
+  const discounted = basePrice * (1 - discount);
+  const totalFinal = discounted * qty;
+
+  const cartData = {
+    name:     productData?.name || 'Mobiliario AdaptArqs',
+    type:     productData?.type || 'image',
+    source:   productData?.source || '',
+    color:    productData?.color || null,
+    price:    basePrice,
+    discount: discount,
+    qty:      qty,
+    total:    totalFinal
+  };
+
+  localStorage.setItem('cartData', JSON.stringify(cartData));
+  window.location.href = 'checkout.html';
+});
+
+// Inicializar display
+updateDisplay();
