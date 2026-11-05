@@ -48,7 +48,11 @@
   // 🪑 Tarjetas de la galería generadas desde el catálogo
   document.getElementById('carouselTrack').innerHTML = PRODUCTS.map(p => `
           <div class="product-card">
-            <img src="${p.image}" alt="${p.name}: ${p.subtitle}" loading="lazy">
+            ${p.videoZoom ? `<div class="video-crop" style="--zoom: ${p.videoZoom}">` : ''}
+            <video muted loop playsinline preload="none" poster="${p.image}" aria-label="${p.name}: ${p.subtitle}">
+              <source src="${p.video}" type="video/mp4">
+            </video>
+            ${p.videoZoom ? '</div>' : ''}
             <h3>${p.name}</h3>
             <p class="subtitle">${p.subtitle}</p>
             <p class="price">${formatCOP(p.price)}</p>
@@ -57,57 +61,114 @@
 </script>
 
 <script>
-  const track = document.getElementById('carouselTrack');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  let isTransitioning = false;
+  // 🎠 Carrusel infinito: avanza solo, se pausa con el cursor y recicla las tarjetas
+  (function infiniteCarousel() {
+    const track    = document.getElementById('carouselTrack');
+    const carousel = track.parentElement;
+    const prevBtn  = document.getElementById('prevBtn');
+    const nextBtn  = document.getElementById('nextBtn');
+    const SPEED    = 45;   // px por segundo
+    let offset = 0, last = performance.now(), hovering = false, dragging = false, holdUntil = 0, tween = null;
 
-  function getScrollStep() {
-    const card = track.querySelector('.product-card');
-    // gap is 14px (mobile) or 25px (desktop). We'll approximate or fetch.
-    const gap = window.innerWidth <= 768 ? 14 : 25;
-    return card ? card.offsetWidth + gap : 320;
-  }
+    // El movimiento es por transform; el scroll nativo queda desactivado
+    track.style.overflow = 'visible';
+    track.style.willChange = 'transform';
+    track.style.touchAction = 'pan-y';
 
-  // Desactivar scroll nativo para usar la animación CSS puramente
-  track.style.overflow = 'visible';
+    const gap    = () => parseFloat(getComputedStyle(track).columnGap) || 25;
+    const stepOf = el => el.getBoundingClientRect().width + gap();
 
-  nextBtn.addEventListener('click', () => {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    const step = getScrollStep();
-    track.style.transition = 'transform 0.4s ease-in-out';
-    track.style.transform = `translateX(-${step}px)`;
-    
-    setTimeout(() => {
-      track.style.transition = 'none';
-      track.style.transform = 'translateX(0)';
-      track.appendChild(track.firstElementChild);
-      isTransitioning = false;
-    }, 400);
-  });
+    // Pasa al final la tarjeta que salió por la izquierda (y al revés) para que nunca se acabe
+    function recycle() {
+      let first = track.firstElementChild;
+      while (first && offset >= stepOf(first)) {
+        const s = stepOf(first);
+        offset -= s;
+        if (tween) { tween.from -= s; tween.to -= s; }
+        track.appendChild(first);
+        first = track.firstElementChild;
+      }
+      while (offset < 0) {
+        const lastCard = track.lastElementChild;
+        const s = stepOf(lastCard);
+        track.prepend(lastCard);
+        offset += s;
+        if (tween) { tween.from += s; tween.to += s; }
+      }
+    }
 
-  prevBtn.addEventListener('click', () => {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    const step = getScrollStep();
-    // Move last element to front instantly
-    track.prepend(track.lastElementChild);
-    // Offset backwards instantly
-    track.style.transition = 'none';
-    track.style.transform = `translateX(-${step}px)`;
-    
-    // Force layout recalculation
-    void track.offsetWidth;
-    
-    // Animate to 0
-    track.style.transition = 'transform 0.4s ease-in-out';
-    track.style.transform = 'translateX(0)';
-    
-    setTimeout(() => {
-      isTransitioning = false;
-    }, 400);
-  });
+    function frame(now) {
+      const dt = Math.min(64, now - last) / 1000;
+      last = now;
+      if (tween) {
+        const k = Math.min(1, (now - tween.start) / tween.dur);
+        offset = tween.from + (tween.to - tween.from) * (1 - Math.pow(1 - k, 3));
+        if (k >= 1) tween = null;
+      } else if (!hovering && !dragging && now > holdUntil) {
+        offset += SPEED * dt;
+      }
+      recycle();
+      track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+      requestAnimationFrame(frame);
+    }
+
+    // Flechas: llevan la siguiente o la anterior tarjeta al borde, con suavidad
+    function nudge(dir) {
+      const now = performance.now();
+      let to;
+      if (dir > 0) to = stepOf(track.firstElementChild);
+      else to = offset > 8 ? 0 : -stepOf(track.lastElementChild);
+      tween = { from: offset, to, start: now, dur: 560 };
+      holdUntil = now + 2600;
+    }
+    nextBtn.addEventListener('click', () => nudge(1));
+    prevBtn.addEventListener('click', () => nudge(-1));
+
+    // Pausa mientras el cursor o el foco están en el carrusel
+    carousel.addEventListener('mouseenter', () => { hovering = true; });
+    carousel.addEventListener('mouseleave', () => { hovering = false; });
+    carousel.addEventListener('focusin',  () => { hovering = true; });
+    carousel.addEventListener('focusout', () => { hovering = false; });
+
+    // Arrastre con el dedo en el celular
+    let startX = 0, startOffset = 0, moved = false;
+    track.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'mouse') return;
+      dragging = true; moved = false; tween = null;
+      startX = e.clientX; startOffset = offset;
+    });
+    window.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 6) moved = true;
+      offset = startOffset - dx;
+    });
+    const endDrag = () => { if (!dragging) return; dragging = false; holdUntil = performance.now() + 2600; };
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
+    track.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+
+    // 🎬 Videos: se reproducen al pasar el cursor; en el celular, cuando la tarjeta está a la vista
+    const cards = [...track.querySelectorAll('.product-card')];
+    const canHover = window.matchMedia('(hover: hover)').matches;
+    const play  = v => { const p = v.play(); if (p) p.catch(() => {}); };
+
+    if (canHover) {
+      cards.forEach(card => {
+        const v = card.querySelector('video');
+        card.addEventListener('mouseenter', () => play(v));
+        card.addEventListener('mouseleave', () => v.pause());
+      });
+    } else if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => entries.forEach(entry => {
+        const v = entry.target.querySelector('video');
+        if (entry.intersectionRatio >= 0.6) play(v); else v.pause();
+      }), { root: carousel, threshold: [0, 0.6] });
+      cards.forEach(card => io.observe(card));
+    }
+
+    requestAnimationFrame(frame);
+  })();
 </script>
 
   <script src="script.js"></script>

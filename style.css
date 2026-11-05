@@ -599,12 +599,31 @@ section, header, footer, .home-desc-section,
   transform: translateY(-8px);
 }
 
-.product-card img {
+.product-card img,
+.product-card video {
+  display: block;
   width: 100%;
   height: 200px;
   object-fit: cover;
   border-radius: 15px;
   margin-bottom: 15px;
+  background: rgba(195, 155, 110, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Recorte para videos que traen texto en el borde inferior */
+.video-crop {
+  overflow: hidden;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-card .video-crop video {
+  margin-bottom: 0;
+  box-shadow: none;
+  transform: scale(var(--zoom, 1));
+  transform-origin: 50% 0;
 }
 
 .product-card h3 {
@@ -1081,7 +1100,8 @@ section, header, footer, .home-desc-section,
   .about-desc-card .lead { font-size: 1rem; }
 
   .product-card { min-width: 170px; flex: 0 0 170px; }
-  .product-card img { height: 140px; }
+  .product-card img,
+  .product-card video { height: 140px; }
 
   .about-team { flex-direction: column; align-items: center; }
   .member { width: 160px; }

@@ -144,6 +144,14 @@ const PRODUCTS = [
   }
 ];
 
+// Video de cada pieza (se reproduce al pasar el cursor en la galería)
+PRODUCTS.forEach(p => {
+  p.video = p.image.replace('/catalogo/', '/videos/').replace('.jpg', '.mp4');
+});
+
+// El video de ÉLAN trae una marca de agua abajo: se amplía desde arriba para dejarla fuera
+getProduct('elan').videoZoom = 1.25;
+
 function getProduct(id) {
   return PRODUCTS.find(p => p.id === id) || null;
 }
